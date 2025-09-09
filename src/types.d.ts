@@ -272,6 +272,8 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   content?: string;
   image?: string | unknown;
   items?: Array<Item>;
+  bio?: string;
+  name?: string;
   columns?: number;
   isReversed?: boolean;
   isAfterContent?: boolean;
@@ -279,3 +281,10 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+
+export interface BookingIntegration extends Omit<Headline, 'classes'>, Widget {
+  url?: string;
+  height?: string;
+  width?: string;
+  className?: string;
+}

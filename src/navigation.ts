@@ -3,7 +3,7 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: 'Hem',
       links: [
         {
           text: 'SaaS',
@@ -24,11 +24,11 @@ export const headerData = {
       ],
     },
     {
-      text: 'Pages',
+      text: 'Behandlingar',
       links: [
         {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
+          text: 'Stötvågsbehandling - ESWT',
+          href: getPermalink('posts/eswt', 'post'),
         },
         {
           text: 'Services',
@@ -57,36 +57,7 @@ export const headerData = {
       ],
     },
     {
-      text: 'Landing',
-      links: [
-        {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
-        },
-        {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
-        },
-        {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
-        },
-        {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
-        },
-        {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
-        },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
-        },
-      ],
-    },
-    {
-      text: 'Blog',
+      text: 'Blogg',
       links: [
         {
           text: 'Blog List',
@@ -94,11 +65,11 @@ export const headerData = {
         },
         {
           text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+          href: getPermalink('posts/how-to-customize-astrowind-to-your-brand', 'post'),
         },
         {
           text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
+          href: getPermalink('posts/markdown-elements-demo-post', 'post'),
         },
         {
           text: 'Category Page',
@@ -110,12 +81,8 @@ export const headerData = {
         },
       ],
     },
-    {
-      text: 'Widgets',
-      href: '#',
-    },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
+  actions: [{ text: 'Boka tid', href: 'https://boka.antwork.se/238', target: '_blank' }],
 };
 
 export const footerData = {

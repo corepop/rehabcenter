@@ -1,0 +1,66 @@
+---
+import WidgetWrapper from '../ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import type { BookingIntegration as Props } from '~/types';
+
+const {
+  url = 'https://boka.antwork.se/238',
+  height = '600px',
+  width = '100%',
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  className = '',
+  id,
+  isDark = false,
+  bg = await Astro.slots.render('bg'),
+  classes = {},
+} = Astro.props as Props;
+---
+
+
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container as string} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
+  <div class={`relative w-full rounded-lg overflow-hidden shadow-lg ${className}`}>
+    <iframe src={url} height={height} width={width} title={title} class="booking-iframe w-full border-none rounded-lg" loading="lazy" allowfullscreen
+    ></iframe>
+  </div>
+</WidgetWrapper>
+
+<script>
+  // Handle iframe loading states
+  document.addEventListener('DOMContentLoaded', () => {
+    const iframes = document.querySelectorAll('.booking-iframe') as NodeListOf<HTMLIFrameElement>;
+
+    iframes.forEach((iframe) => {
+      const container = iframe.parentElement;
+      if (!container) return;
+
+      const loadingOverlay = document.createElement('div');
+      loadingOverlay.className = 'absolute inset-0 bg-white/90 flex items-center justify-center rounded-lg z-10';
+      loadingOverlay.innerHTML = '<div class="w-10 h-10 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>';
+
+      // Add loading overlay
+      container.appendChild(loadingOverlay);
+
+      // Remove loading overlay when iframe loads
+      iframe.addEventListener('load', () => {
+        loadingOverlay.remove();
+      });
+
+      // Handle errors
+      iframe.addEventListener('error', () => {
+        loadingOverlay.remove();
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'p-8 text-center text-red-600 bg-red-50 border border-red-300 rounded-lg';
+        errorDiv.innerHTML = `
+          <h3>Unable to load booking system</h3>
+          <p>Please try refreshing the page or contact support if the problem persists.</p>
+          <a href="${iframe.src}" target="_blank" rel="noopener noreferrer">Open booking system in new tab</a>
+        `;
+        container.appendChild(errorDiv);
+      });
+    });
+  });
+</script>
