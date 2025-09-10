@@ -22,3 +22,8 @@ pnpm-debug.log*
 pnpm-lock.yaml
 
 .astro
+
+# misc
+.clinerules
+.vscode
+.editorconfig
