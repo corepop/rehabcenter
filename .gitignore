@@ -25,5 +25,3 @@ pnpm-lock.yaml
 
 # misc
 .clinerules
-.vscode
-.editorconfig
