@@ -64,6 +64,18 @@ export const headerData = {
           href: getBlogPermalink(),
         },
         {
+          text: 'Article',
+          href: getPermalink('posts/how-to-customize-astrowind-to-your-brand', 'post'),
+        },
+        {
+          text: 'Article (with MDX)',
+          href: getPermalink('posts/markdown-elements-demo-post', 'post'),
+        },
+        {
+          text: 'Category Page',
+          href: getPermalink('tutorials', 'category'),
+        },
+        {
           text: 'Tag Page',
           href: getPermalink('astro', 'tag'),
         },
