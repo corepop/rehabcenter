@@ -1,0 +1,175 @@
+---
+export const prerender = true;
+
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Nacksmärta',
+  description: 'Specialiserad behandling av nacksmärta och relaterade besvär. Vi hjälper dig att lindra smärta och förbättra nackens funktion.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Våra behandlingar"
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Nacksmärta behandling på Enköpings Rehabcenter',
+    }}
+  >
+    <Fragment slot="title">
+      Behandling av <br />
+      <span class="text-accent dark:text-white">Nacksmärta</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Nacksmärta är vanligt och kan påverka hela livet. Vi erbjuder specialiserad behandling för att lindra smärta och förbättra funktion.
+    </Fragment>
+  </Hero>
+
+  <!-- Content Widget - Common causes ************** -->
+
+  <Content
+    title="Vanliga orsaker till nacksmärta"
+    subtitle="Nacksmärta kan uppstå av flera olika skäl och kräver ofta professionell bedömning"
+    items={[
+      {
+        title: 'Dålig hållning',
+        description: 'Långvarigt sittande framför dator eller mobil kan orsaka spänningar i nacke och axlar.',
+      },
+      {
+        title: 'Whiplash-skador',
+        description: 'Trauma från bilolyckor eller andra incidenter kan ge långvariga besvär.',
+      },
+      {
+        title: 'Diskdegeneration',
+        description: 'Åldersrelaterade förändringar i nackens diskar kan orsaka smärta och stelhet.',
+      },
+      {
+        title: 'Stress och spänningar',
+        description: 'Psykisk stress kan manifestera sig som fysiska spänningar i nackmuskulaturen.',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/ultraljud-2.jpg',
+      alt: 'Ultraljudsbehandling av nacke',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Våra specialiserade undersökningar hjälper oss att identifiera den exakta orsaken till din nacksmärta.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Treatment approaches ************** -->
+
+  <Content
+    title="Våra behandlingsmetoder"
+    subtitle="Vi använder beprövade tekniker för effektiv behandling av nacksmärta"
+    items={[
+      {
+        title: 'Mjukdelsbehandling',
+        description: 'Massage och stretching för att lösa upp spänningar i nackmuskulaturen.',
+      },
+      {
+        title: 'Ledmobilisering',
+        description: 'Försiktig mobilisering av nackens leder för att förbättra rörlighet.',
+      },
+      {
+        title: 'Hållningskorrigering',
+        description: 'Utbildning i rätt hållning och ergonomiska lösningar för vardagen.',
+      },
+      {
+        title: 'Hemövningar',
+        description: 'Skräddarsydda övningar för att stärka nacke och axlar på lång sikt.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Nackundersökning och behandling',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Behandlingen anpassas efter dina specifika behov och den bakomliggande orsaken till smärtan.
+      </p>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Cervicogenic headache ************** -->
+
+  <Content
+    title="Cervikogen huvudvärk"
+    subtitle="Många huvudvärk kan härledas till problem i nackregionen"
+    items={[
+      {
+        title: 'Nackrelaterad huvudvärk',
+        description: 'Smärta som utgår från nacke men känns i huvudet, ofta ensidig.',
+      },
+      {
+        title: 'Spänningshuvudvärk',
+        description: 'Ofta relaterad till muskulära spänningar i nacke och axlar.',
+      },
+      {
+        title: 'Migränliknande symtom',
+        description: 'Vissa migränformer kan förvärras av nackproblem.',
+      },
+      {
+        title: 'Yrsel och balansproblem',
+        description: 'Nackrelaterade yrselbesvär kräver särskild uppmärksamhet.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Patient med cervikogen huvudvärk',
+    }}
+  />
+
+  <!-- Features2 Widget - Results ************** -->
+
+  <Features2
+    title="Behandlingsresultat"
+    columns={1}
+    items={[
+      {
+        title: 'Snabb smärtlindring',
+        description: 'Många patienter upplever förbättring redan efter första behandlingen.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Förebyggande effekt',
+        description: 'Genom rätt teknik och övningar minskar risken för återfall avsevärt.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget - Contact ************** -->
+
+  <Features2
+    title="Boka din konsultation"
+    columns={2}
+    items={[
+      {
+        title: 'Kontakta oss idag',
+        description: 'Ring för att boka tid eller få råd om dina nackbesvär.',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Akut hjälp',
+        description: 'Vi har möjlighet att erbjuda akuttider vid akut nacksmärta.',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  />
+</Layout>

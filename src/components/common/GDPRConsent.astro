@@ -1,0 +1,201 @@
+---
+// GDPR Cookie Consent Banner Component
+---
+
+<div id="gdpr-consent-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg transform translate-y-full transition-transform duration-300">
+  <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          🍪 Cookie-inställningar
+        </h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+          Vi använder cookies för att förbättra din upplevelse, analysera trafiken och anpassa innehållet.
+          Genom att fortsätta använda vår webbplats godkänner du vår användning av cookies enligt vår
+          <a href="/privacy" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline">Integritetspolicy</a>.
+        </p>
+
+        <div class="space-y-2">
+          <div class="flex items-center">
+            <input type="checkbox" id="essential-cookies" checked disabled class="mr-2">
+            <label for="essential-cookies" class="text-sm text-gray-700 dark:text-gray-300">
+              <strong>Nödvändiga cookies</strong> - Krävs för att webbplatsen ska fungera
+            </label>
+          </div>
+          <div class="flex items-center">
+            <input type="checkbox" id="analytics-cookies" class="mr-2">
+            <label for="analytics-cookies" class="text-sm text-gray-700 dark:text-gray-300">
+              <strong>Analyscookies</strong> - Hjälper oss förstå hur besökare använder vår sida
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+        <button id="accept-all-cookies" class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+          Acceptera alla
+        </button>
+        <button id="accept-essential-only" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white text-sm font-medium rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+          Endast nödvändiga
+        </button>
+        <button id="customize-cookies" class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+          Anpassa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Type declarations for Google Analytics
+  declare global {
+    function gtag(command: string, targetId: string, config?: Record<string, unknown>): void;
+    function gtag(command: string, action: string, parameters?: Record<string, unknown>): void;
+  }
+
+  class GDPRConsentManager {
+    private banner: HTMLElement | null = null;
+    private isVisible: boolean = false;
+
+    constructor() {
+      this.init();
+    }
+
+    private init() {
+      this.banner = document.getElementById('gdpr-consent-banner');
+      if (!this.banner) return;
+
+      // Check if user is in EU
+      if (this.isInEU()) {
+        // Check if consent already given
+        const consent = this.getConsentStatus();
+        if (!consent) {
+          this.showBanner();
+          this.bindEvents();
+        } else {
+          this.applyConsent(consent);
+        }
+      }
+    }
+
+    private isInEU(): boolean {
+      // Check if user is in EU based on timezone and other indicators
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const euTimezones = [
+        'Europe/Stockholm', 'Europe/London', 'Europe/Paris', 'Europe/Berlin',
+        'Europe/Rome', 'Europe/Madrid', 'Europe/Amsterdam', 'Europe/Brussels',
+        'Europe/Vienna', 'Europe/Prague', 'Europe/Warsaw', 'Europe/Budapest',
+        'Europe/Bucharest', 'Europe/Sofia', 'Europe/Athens', 'Europe/Helsinki',
+        'Europe/Copenhagen', 'Europe/Oslo', 'Europe/Lisbon', 'Europe/Zurich'
+      ];
+
+      return euTimezones.includes(timezone);
+    }
+
+    private showBanner() {
+      if (!this.banner) return;
+      this.banner.classList.remove('translate-y-full');
+      this.isVisible = true;
+    }
+
+    private hideBanner() {
+      if (!this.banner) return;
+      this.banner.classList.add('translate-y-full');
+      this.isVisible = false;
+    }
+
+    private bindEvents() {
+      const acceptAllBtn = document.getElementById('accept-all-cookies');
+      const acceptEssentialBtn = document.getElementById('accept-essential-only');
+      const customizeBtn = document.getElementById('customize-cookies');
+
+      acceptAllBtn?.addEventListener('click', () => {
+        this.setConsent({ essential: true, analytics: true });
+        this.hideBanner();
+      });
+
+      acceptEssentialBtn?.addEventListener('click', () => {
+        this.setConsent({ essential: true, analytics: false });
+        this.hideBanner();
+      });
+
+      customizeBtn?.addEventListener('click', () => {
+        this.showCustomization();
+      });
+    }
+
+    private setConsent(consent: { essential: boolean; analytics: boolean }) {
+      localStorage.setItem('gdpr-consent', JSON.stringify({
+        ...consent,
+        timestamp: Date.now(),
+        version: '1.0'
+      }));
+      this.applyConsent(consent);
+    }
+
+    private getConsentStatus(): { essential: boolean; analytics: boolean } | null {
+      const consent = localStorage.getItem('gdpr-consent');
+      if (!consent) return null;
+
+      try {
+        return JSON.parse(consent);
+      } catch {
+        return null;
+      }
+    }
+
+    private applyConsent(consent: { essential: boolean; analytics: boolean }) {
+      // Apply analytics consent
+      if (consent.analytics) {
+        this.enableAnalytics();
+      } else {
+        this.disableAnalytics();
+      }
+
+      // Dispatch custom event for other components to listen to
+      window.dispatchEvent(new CustomEvent('gdpr-consent-changed', {
+        detail: consent
+      }));
+    }
+
+    private enableAnalytics() {
+      // Enable Google Analytics if available
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted'
+        });
+      }
+    }
+
+    private disableAnalytics() {
+      // Disable Google Analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          analytics_storage: 'denied'
+        });
+      }
+    }
+
+    private showCustomization() {
+      // For now, just toggle the analytics checkbox
+      const analyticsCheckbox = document.getElementById('analytics-cookies') as HTMLInputElement;
+      if (analyticsCheckbox) {
+        analyticsCheckbox.checked = !analyticsCheckbox.checked;
+      }
+    }
+
+    public revokeConsent() {
+      localStorage.removeItem('gdpr-consent');
+      this.setConsent({ essential: true, analytics: false });
+      this.showBanner();
+    }
+  }
+
+  // Initialize GDPR consent manager when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new GDPRConsentManager();
+  });
+
+  // Export for global access
+  (window as typeof window & { GDPRConsentManager: typeof GDPRConsentManager }).GDPRConsentManager = GDPRConsentManager;
+</script>

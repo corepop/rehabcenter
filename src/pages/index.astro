@@ -1,20 +1,20 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+export const prerender = true;
 
+import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
-import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import Content from '~/components/widgets/Content.astro';
+import PersonalIntroduction from '~/components/widgets/PersonalIntroduction.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import BookingIntegration from '~/components/widgets/BookingIntegration.astro';
 
 const metadata = {
-  title: 'Enköpings Rehabcenter — Snabb smärtlindring med expertis inom naprapati och sjukgymnastik!',
+  title: 'Enköpings Rehabcenter — Personlig vård inom naprapati och sjukgymnastik i Enköping',
+  description:
+    'Välkommen! Jag heter Johny Åhman, naprapat och legitimerad sjukgymnast med över 35 års erfarenhet. Jag erbjuder personlig och evidensbaserad behandling för smärta och besvär i rygg, nacke, axlar, knän, fötter m.m. Boka tid enkelt online.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -30,21 +30,23 @@ const metadata = {
         href: '#booking',
         icon: 'tabler:calendar',
       },
-      { text: 'Läs mer', href: '#features' },
+      { text: 'Läs mer om mig', href: '#om-mig' },
     ]}
-    image={{ src: '~/assets/images/tree.png', alt: 'AstroWind Hero Image' }}
+    image={{ src: '~/assets/images/johny.webp', alt: 'Johny Åhman – Enköpings Rehabcenter' }}
   >
     <Fragment slot="title">
-      Möt en expert inom <span class="hidden xl:inline">smärtlindring, </span>
-      <span class="text-accent text-blue-600"> Naprapati och Sjukgymnastik</span>
+      Hej, jag heter Johny Åhman – <span class="hidden xl:inline">naprapat och </span><span
+        class="text-accent text-blue-600">legitimerad sjukgymnast</span
+      > i Enköping
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">Enköpings Rehabcenter</span> hjälper dig snabbt med smärtan!
-      </span>
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">Vi har akuttider!</span>
-      Genom att kombinera naprapat– och sjukgymnastbehandling uppnår vi bästa resultat för att du ska slippa ha ont.
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">Akuttider finns!</span>
+      <span class="hidden sm:inline"
+        ><span class="font-semibold">Välkommen till Enköpings Rehabcenter.</span> Jag hjälper dig snabbt med smärta i rygg,
+        nacke, axlar, knän och fötter.</span
+      >
+      Med över 35 års erfarenhet kombinerar jag naprapati och sjukgymnastik för att du ska bli smärtfri så snabbt som möjligt.
     </Fragment>
   </Hero>
 
@@ -53,17 +55,17 @@ const metadata = {
   <Note title="200kr:" description="Landstingstaxa och Frikort gäller" />
 
   <!-- Personal Introduction Widget *** -->
-  <Content
-    title="Om Experten"
+  <PersonalIntroduction
+    id="om-mig"
+    title="Hej, jag heter Johny"
+    subtitle="Naprapat och legitimerad sjukgymnast i Enköping"
     name="Johny Åhman"
-    subtitle="Naprapat och Legitimerad Sjukgymnast"
-    items={[
-      {
-        title: 'Johny Åhman',
-        description:
-          'Med över 35 års erfarenhet. Han har dessutom utbildat sig till OMT steg 3, där varje steg tar 3 terminer. Han har gått specialkurser vad gäller axel, knä, och fotbesvär. Han har dessutom intresserat sig för yrsel och huvudvärk.',
-      },
-    ]}
+    bio={`<p>Jag brinner för att hjälpa människor tillbaka till en smärtfri och aktiv vardag. Med över 35 års erfarenhet erbjuder jag personlig, trygg och evidensbaserad vård.</p>
+  <ul class="list-disc ml-5 mt-3 space-y-1">
+    <li>OMT steg 3 (ortopedisk manuell terapi)</li>
+    <li>Särskild kompetens för axel-, knä- och fotbesvär</li>
+    <li>Intresse och erfarenhet av yrsel och huvudvärk</li>
+  </ul>`}
     image={{
       src: '~/assets/images/johny.webp',
       alt: 'Johny Åhman',
@@ -83,6 +85,41 @@ const metadata = {
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </BookingIntegration>
+
+  <!-- Testimonials Widget *********** -->
+
+  <Testimonials
+    title="Vad mina patienter säger"
+    subtitle="Läs om erfarenheter från patienter i Enköping som har fått hjälp med sina besvär"
+    testimonials={[
+      {
+        title: 'Fantastisk hjälp med ryggsmärta',
+        testimonial:
+          'Efter år av ryggsmärta som begränsade min vardag sökte jag hjälp hos Johny. Redan efter några behandlingar märkte jag stor förbättring. Hans kunskap och personliga engagemang gjorde hela skillnaden. Jag rekommenderar honom varmt!',
+        name: 'Anna L.',
+        job: 'Lärare, Enköping',
+      },
+      {
+        title: 'Snabb lindring av nackspärr',
+        testimonial:
+          'Jag fick akut nackspärr och kunde knappt röra huvudet. Johny tog emot mig samma dag och efter behandlingen kunde jag röra mig fritt igen. Hans förklaringar om varför besvären uppstod hjälpte mig att förstå och förebygga framtida problem.',
+        name: 'Erik M.',
+        job: 'Entreprenör, Enköping',
+      },
+      {
+        title: 'Återgång till träning efter knäskada',
+        testimonial:
+          'Efter en knäskada trodde jag aldrig att jag skulle kunna springa igen. Med Johnys rehabprogram och expertis har jag inte bara återgått till löpning utan också förbättrat min teknik. Hans engagemang och professionalism är enastående.',
+        name: 'Maria K.',
+        job: 'Löpcoach, Strängnäs',
+      },
+    ]}
+    callToAction={{
+      text: 'Boka din konsultation',
+      href: '#booking',
+      icon: 'tabler:calendar',
+    }}
+  />
 
   <!-- Features Widget *************** 
 
@@ -214,60 +251,60 @@ const metadata = {
 
   <!-- Steps Widget ****************** -->
 
-  <!-- Features2 Widget ************** -->
+  <!-- Features2 Widget ************** 
 
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
+  <Features2 id="tjanster"
+    title="Hur jag kan hjälpa dig"
+    subtitle="Vanliga besvär jag behandlar – med personligt bemötande"
     items={[
       {
         title: 'Ryggsmärta/ischias',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
+        description: 'Akut eller långvarig smärta i rygg och ben. Noggrann undersökning och effektiv behandling för snabb lindring.',
         icon: 'flat-color-icons:template',
       },
       {
         title: 'Huvudvärk/spänningshuvudvärk',
         description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
+          'Utredning av bakomliggande orsaker i nacke och käke. Behandling och råd för att förebygga återkommande besvär.',
         icon: 'flat-color-icons:gallery',
       },
       {
         title: 'Nacksmärta/nackspärr',
         description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
+          'Akut nackspärr eller stelhet. Skonsam manuell behandling och övningar som ger rörlighet och smärtlindring.',
         icon: 'flat-color-icons:approval',
       },
       {
         title: 'Skuldersmärta',
         description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
+          'Smärta vid arbete eller träning. Både diagnostik och behandling av senor/ledkapsel samt återgång till aktivitet.',
         icon: 'flat-color-icons:document',
       },
       {
         title: 'Ont i fötter och hälsenor',
         description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
+          'Hälsporre, hälsenor och fotbesvär. Analys av belastning, behandling och stegvis återgång till rörelse.',
         icon: 'flat-color-icons:advertising',
       },
       {
         title: 'Ont i knän och vader',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
+        description: 'Knäsmärta vid löpning eller vardag. Bedömning, behandling och anpassat rehabprogram.',
         icon: 'flat-color-icons:currency-exchange',
       },
       {
         title: 'Ont i höfterna',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
+        description: 'Smärta i höft/ljumskar. Manuell behandling och individuella övningar för styrka och funktion.',
         icon: 'flat-color-icons:voice-presentation',
       },
       {
         title: 'Yrsel',
         description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
+          'Bedömning av cervikogen yrsel och balansbesvär. Trygg guidning och anpassad rehabilitering.',
         icon: 'flat-color-icons:business-contact',
       },
       {
         title: 'Käk/huvudvärk',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
+        description: 'Spänningar i käke och tinningar som ger huvudvärk. Behandling och egenvårdsråd för bestående resultat.',
         icon: 'flat-color-icons:database',
       },
     ]}
@@ -280,39 +317,50 @@ const metadata = {
   <!-- HighlightedPosts Widget ******* -->
 
   <BlogLatestPosts
-    title="Lär dig mer genom bloggen"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `}
-  />
+    title="Tips och råd från kliniken"
+    information={`I bloggen delar jag praktiska råd, övningar och fördjupningar om vanliga besvär i rygg, nacke, axlar, knän och fötter.
+                        Mitt mål är att hjälpa dig förstå orsakerna bakom smärtan och vad du kan göra själv mellan behandlingarna.`}
+  >
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+  </Fragment></BlogLatestPosts>
 
   <!-- FAQs Widget ******************* -->
 
   <FAQs
-    title="Vanliga Frågor"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    title="Vanliga frågor och svar"
+    subtitle="Här svarar jag på de vanligaste frågorna från mina patienter i Enköping. Har du andra frågor är du välkommen att kontakta mig direkt."
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Ska jag acceptera att jag har ont?',
+        title: 'Hur lång tid tar en behandling?',
         description:
-          "Det är vanligt, främst för de som haft ont länge, att smärtan ses som en naturlig del av livet. Men ge inte upp! Det finns hjälp att få och flera olika vägar till ett smärtfritt liv. <br><br>I de fall smärtan inte kan tas bort helt kan den ofta lindras. Kontakta oss så hjälper vi dig gärna!",
+          'En första konsultation tar vanligtvis 45-60 minuter där vi gör en grundlig undersökning och diskuterar dina besvär. Efterföljande behandlingar tar 30-45 minuter. Vi tar den tid som behövs för att du ska få bästa möjliga vård.',
       },
       {
-        title: 'Vad är dry needling?',
+        title: 'Vad kostar en behandling?',
         description:
-          'Needling är en vidareutveckling av akupunktur som är utvecklat av smärtläkare. Det kan vara oerhört effektivt redan vid första behandlingen. Det är ett speciellt effektivt behandlingsalternativ för att behandla muskulära problem och smärtor. Jag kombinerar ofta med kiropraktik och stötvåg.',
+          'Vi följer landstingstaxan på 200 kronor per behandling. Frikort gäller naturligtvis. Vi erbjuder också paketlösningar för de som behöver flera behandlingar. Kontakta mig för mer information om priser.',
       },
       {
-        title: 'Vad är OMT3?',
+        title: 'Behöver jag remiss från läkare?',
         description:
-          "OMT står för Ortopedisk Manuell Terapi. Det är ett specialistområde för sjukgymnaster. Siffran anger antalet vidareutbildningar behandlaren har. <br><br>En OMT-fysioterapeut utför systematiska undersökningar med kliniskt resonemang som leder till heltäckande evidensbaserade behandlingar. <br><br>Patienten får också en förklaringsmodell till sina besvär. Det kan ske genom en genomgång av anatomi, funktion och de olika uppkomstmekanismerna till besvären.",
+          'Nej, du kan kontakta mig direkt för de flesta besvär inom naprapati och sjukgymnastik. Vid behov kan jag remittera dig vidare till läkare eller annan specialistvård.',
       },
       {
-        title: "What's something that you don't understand?",
+        title: 'Hur många behandlingar behövs vanligtvis?',
         description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+          'Det varierar mycket beroende på typ av besvär och hur länge du haft dem. Akuta besvär kan ofta lindras på 1-3 behandlingar, medan kroniska tillstånd kan behöva 5-10 behandlingar eller mer. Jag gör alltid en individuell bedömning.',
+      },
+      {
+        title: 'Kan jag träna vidare under behandling?',
+        description:
+          'I de flesta fall kan du fortsätta träna, men jag ger alltid råd om vilka övningar som är lämpliga och vilka som bör undvikas tillfälligt. Målet är att du ska kunna återgå till din normala aktivitetsnivå så snart som möjligt.',
+      },
+      {
+        title: 'Vad är skillnaden mellan naprapat och sjukgymnast?',
+        description:
+          'Som både naprapat och legitimerad sjukgymnast kombinerar jag det bästa från båda världarna. Naprapatin fokuserar på manuell behandling av leder och muskler, medan sjukgymnastiken inkluderar rehabilitering och förebyggande träning.',
       },
     ]}
   />
@@ -322,20 +370,24 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
+        text: 'Boka tid nu',
+        href: '#booking',
+        icon: 'tabler:calendar',
+      },
+      {
+        text: 'Kontakta mig',
+        href: '/contact',
+        icon: 'tabler:phone',
       },
     ]}
   >
     <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+      Redo att må bättre?<br class="block sm:hidden" /><span class="sm:whitespace-nowrap"> Kontakta mig idag!</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
+      Ta det första steget mot ett smärtfritt liv. Jag finns här för att hjälpa dig att återfå din livskvalitet och
+      rörlighet.
     </Fragment>
   </CallToAction>
 </Layout>

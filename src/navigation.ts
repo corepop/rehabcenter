@@ -6,20 +6,20 @@ export const headerData = {
       text: 'Hem',
       links: [
         {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
+          text: 'Prissättning',
+          href: getPermalink('/pricing'),
         },
         {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
+          text: 'Om oss',
+          href: getPermalink('/about'),
         },
         {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app'),
+          text: 'Kontakt',
+          href: getPermalink('/contact'),
         },
         {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
+          text: 'Integritetspolicy',
+          href: getPermalink('/privacy'),
         },
       ],
     },
@@ -28,31 +28,31 @@ export const headerData = {
       links: [
         {
           text: 'Stötvågsbehandling - ESWT',
-          href: getPermalink('posts/eswt', 'post'),
+          href: getPermalink('/behandlingar/eswt'),
         },
         {
-          text: 'Services',
-          href: getPermalink('/services'),
+          text: 'Ryggsmärta',
+          href: getPermalink('/behandlingar/ryggsmarta'),
         },
         {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
+          text: 'Nacksmärta',
+          href: getPermalink('/behandlingar/nacksmarta'),
         },
         {
-          text: 'About us',
-          href: getPermalink('/about'),
+          text: 'Axlar & Skuldror',
+          href: getPermalink('/behandlingar/skuldror'),
         },
         {
-          text: 'Contact',
-          href: getPermalink('/contact'),
+          text: 'Knäproblem',
+          href: getPermalink('/behandlingar/knan'),
         },
         {
-          text: 'Terms',
-          href: getPermalink('/terms'),
+          text: 'Fot- & Hälsenbesvär',
+          href: getPermalink('/behandlingar/fotter'),
         },
         {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
+          text: 'Yrsel & Balans',
+          href: getPermalink('/behandlingar/yrsel'),
         },
       ],
     },
@@ -60,11 +60,11 @@ export const headerData = {
       text: 'Blogg',
       links: [
         {
-          text: 'Blog List',
+          text: 'Blogglista',
           href: getBlogPermalink(),
         },
         {
-          text: 'Tag Page',
+          text: 'Taggsida',
           href: getPermalink('astro', 'tag'),
         },
       ],
@@ -76,62 +76,48 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: 'Behandlingar',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        { text: 'Ryggsmärta & Ischias', href: getPermalink('/behandlingar/ryggsmarta') },
+        { text: 'Nacksmärta & Huvudvärk', href: getPermalink('/behandlingar/nacksmarta') },
+        { text: 'Skulder & Armar', href: getPermalink('/behandlingar/skuldror') },
+        { text: 'Knän & Höfter', href: getPermalink('/behandlingar/knan') },
+        { text: 'Fötter & Hälsenor', href: getPermalink('/behandlingar/fotter') },
+        { text: 'Yrsel & Balans', href: getPermalink('/behandlingar/yrsel') },
       ],
     },
     {
-      title: 'Platform',
+      title: 'Om Kliniken',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
+        { text: 'Om Johny Åhman', href: getPermalink('/about') },
+        { text: 'Våra Tjänster', href: getPermalink('/services') },
+        { text: 'Priser & Bokning', href: getPermalink('/pricing') },
+        { text: 'Kontaktuppgifter', href: getPermalink('/contact') },
+        { text: 'Tips & Råd', href: getBlogPermalink() },
       ],
     },
     {
-      title: 'Support',
+      title: 'Information',
       links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
-      ],
-    },
-    {
-      title: 'Company',
-      links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' },
+        { text: 'Integritetspolicy', href: getPermalink('/privacy') },
+        { text: 'Användarvillkor', href: getPermalink('/terms') },
+        { text: 'Cookies', href: getPermalink('/cookies') },
+        { text: 'GDPR & Dataskydd', href: getPermalink('/privacy') },
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Integritetspolicy', href: getPermalink('/privacy') },
+    { text: 'Kontakta oss', href: getPermalink('/contact') },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
+    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/arthelokyo/astrowind' },
   ],
   footNote: `
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://github.com/arthelokyo"> Arthelokyo</a> · All rights reserved.
+    Enköpings Rehabcenter © ${new Date().getFullYear()}
+    <br>
+    <small>Vi följer svenska dataskyddsregler (GDPR) och värnar om din integritet.</small>
   `,
 };

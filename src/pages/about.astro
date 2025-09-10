@@ -1,13 +1,17 @@
 ---
+export const prerender = true;
+
 import Features2 from '~/components/widgets/Features2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import Steps2 from '~/components/widgets/Steps2.astro';
+import Content from '~/components/widgets/Content.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'About us',
+  title: 'Om Johny Åhman - Enköpings Rehabcenter',
+  description:
+    'Lär känna Johny Åhman, legitimerad sjukgymnast och naprapat med över 35 års erfarenhet inom smärtlindring och rehabilitering i Enköping.',
 };
 ---
 
@@ -15,213 +19,182 @@ const metadata = {
   <!-- Hero Widget ******************* -->
 
   <Hero
-    tagline="About us"
+    tagline="Om oss"
     image={{
-      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Caos Image',
+      src: '~/assets/images/undersokning.jpg',
+      alt: 'Johny Åhman - Legitimerad Sjukgymnast och Naprapat',
     }}
   >
     <Fragment slot="title">
-      Elevate your online presence with our <br />
-      <span class="text-accent dark:text-white"> Beautiful Website Templates</span>
+      Möt Johny Åhman - <br />
+      <span class="text-accent dark:text-white"> Din personliga smärtexpert i Enköping</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Donec efficitur, ipsum quis congue luctus, mauris magna convallis mauris, eu auctor nisi lectus non augue. Donec
-      quis lorem non massa vulputate efficitur ac at turpis. Sed tincidunt ex a nunc convallis, et lobortis nisi tempus.
-      Suspendisse vitae nisi eget tortor luctus maximus sed non lectus.
+      Med över 35 års erfarenhet hjälper jag människor i Enköping och närliggande områden att bli av med smärta och
+      förbättra sin livskvalitet genom naprapati och sjukgymnastik.
     </Fragment>
   </Hero>
 
   <!-- Stats Widget ****************** -->
 
   <Stats
-    title="Statistics about us"
+    title="Min erfarenhet i siffror"
     stats={[
-      { title: 'Offices', amount: '4' },
-      { title: 'Employees', amount: '248' },
-      { title: 'Templates', amount: '12' },
-      { title: 'Awards', amount: '24' },
+      { title: 'Års erfarenhet', amount: '35+' },
+      { title: 'Behandlade patienter', amount: '10,000+' },
+      { title: 'Specialområden', amount: '6' },
+      { title: 'OMT-nivå', amount: '3' },
     ]}
   />
 
-  <!-- Features3 Widget ************** -->
+  <!-- Content Widget - Personal Story ************** -->
 
-  <Features3
-    title="Our templates"
-    subtitle="Etiam scelerisque, enim eget vestibulum luctus, nibh mauris blandit nulla, nec vestibulum risus justo ut enim. Praesent lacinia diam et ante imperdiet euismod."
-    columns={3}
-    isBeforeContent={true}
+  <Content
+    title="Min resa inom sjukgymnastik"
+    subtitle="Legitimerad Sjukgymnast och Naprapat"
     items={[
       {
-        title: 'Educational',
+        title: 'En passion för smärtlindring',
         description:
-          'Morbi faucibus luctus quam, sit amet aliquet felis tempor id. Cras augue massa, ornare quis dignissim a, molestie vel nulla.',
-        icon: 'tabler:template',
+          'Min resa började för över 35 år sedan när jag insåg att många människor lider i onödan av smärta som kan behandlas effektivt. Genom åren har jag specialiserat mig på att kombinera naprapati och sjukgymnastik för att ge bästa möjliga resultat.',
       },
       {
-        title: 'Interior Design',
+        title: 'Kontinuerlig vidareutbildning',
         description:
-          'Vivamus porttitor, tortor convallis aliquam pretium, turpis enim consectetur elit, vitae egestas purus erat ac nunc nulla.',
-        icon: 'tabler:template',
+          'Jag har gått OMT-utbildning steg 3, vilket är den högsta nivån inom ortopedisk manuell terapi. Dessutom har jag specialiserat mig inom axel-, knä- och fotbesvär, samt yrsel och huvudvärk.',
       },
       {
-        title: 'Photography',
+        title: 'Lokalt förankrad i Enköping',
         description:
-          'Duis sed lectus in nisl vehicula porttitor eget quis odio. Aliquam erat volutpat. Nulla eleifend nulla id sem fermentum.',
-        icon: 'tabler:template',
-      },
-    ]}
-  />
-
-  <!-- Features3 Widget ************** -->
-
-  <Features3
-    columns={3}
-    isAfterContent={true}
-    items={[
-      {
-        title: 'E-commerce',
-        description:
-          'Rutrum non odio at vehicula. Proin ipsum justo, dignissim in vehicula sit amet, dignissim id quam. Sed ac tincidunt sapien.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Blog',
-        description:
-          'Nullam efficitur volutpat sem sed fringilla. Suspendisse et enim eu orci volutpat laoreet ac vitae libero.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Business',
-        description:
-          'Morbi et elit finibus, facilisis justo ut, pharetra ipsum. Donec efficitur, ipsum quis congue luctus, mauris magna.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Branding',
-        description:
-          'Suspendisse vitae nisi eget tortor luctus maximus sed non lectus. Cras malesuada pretium placerat. Nullam venenatis dolor a ante rhoncus.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Medical',
-        description:
-          'Vestibulum malesuada lacus id nibh posuere feugiat. Nam volutpat nulla a felis ultrices, id suscipit mauris congue. In hac habitasse platea dictumst.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Fashion Design',
-        description:
-          'Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus.',
-        icon: 'tabler:template',
+          'Som Enköpingsbo förstår jag de utmaningar som lokalbefolkningen möter. Jag är engagerad i det lokala samhället och hjälper gärna till med råd och behandling för att förbättra livskvaliteten för mina grannar.',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-      alt: 'Colorful Image',
+      src: '~/assets/images/johny.webp',
+      alt: 'Johny Åhman under behandling',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Varför välja Enköpings Rehabcenter?
+      </h3>
+      Kombinationen av lång erfarenhet, specialiseringar och personlig omsorg gör att jag kan erbjuda skräddarsydda behandlingar
+      som verkligen fungerar.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Features3 Widget - Specializations ************** -->
+
+  <Features3
+    title="Mina specialområden"
+    subtitle="Genom åren har jag specialiserat mig inom flera områden för att ge dig bästa möjliga vård"
+    columns={3}
+    isAfterContent={false}
+    items={[
+      {
+        title: 'Axelbesvär',
+        description:
+          'Specialiserad behandling av axelskador, impingement, frozen shoulder och andra axelrelaterade problem med evidensbaserade metoder.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Knäproblem',
+        description:
+          'Expertis inom knäledsbesvär, meniskskador, korsbandsskador och artros. Kombinerar manuell terapi med rehabiliteringsövningar.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Fot- och hälsenebesvär',
+        description:
+          'Behandling av hälsporre, plantar fasciit, fotledsproblem och andra nedre extremitetsbesvär med fokus på funktionell återhämtning.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Huvudvärk & Yrsel',
+        description:
+          'Specialiserad inom cervikogen huvudvärk, migrän, spänningshuvudvärk och yrselproblematik med holistisk approach.',
+        icon: 'tabler:brain',
+      },
+      {
+        title: 'Rygg- och Nackbesvär',
+        description:
+          'Omfattande erfarenhet av alla typer av rygg- och nackproblem, från akuta skador till kroniska tillstånd.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Idrottsmedicin',
+        description:
+          'Hjälper aktiva människor att återgå till träning och tävling genom skräddarsydda rehabprogram och skadeprevention.',
+        icon: 'tabler:activity',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/ultraljud-1.jpg',
+      alt: 'Johny Åhman demonstrerar behandlingsteknik',
     }}
   />
 
-  <!-- Steps2 Widget ****************** -->
+  <!-- Steps2 Widget - Values ****************** 
 
   <Steps2
-    title="Our values"
-    subtitle="Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus. Nulla facilisi. Vestibulum malesuada lacus."
+    title="Mina värderingar"
+    subtitle="Min approach till vård bygger på dessa grundläggande principer som guidar allt jag gör"
     items={[
       {
-        title: 'Customer-centric approach',
+        title: 'Patientfokuserad vård',
         description:
-          'Donec id nibh neque. Quisque et fermentum tortor. Fusce vitae dolor a mauris dignissim commodo. Ut eleifend luctus condimentum.',
+          'Varje patient är unik och förtjänar individuell uppmärksamhet. Jag lyssnar noga på dina bekymmer och skapar behandlingsplaner som är skräddarsydda för just dina behov.',
       },
       {
-        title: 'Constant Improvement',
+        title: 'Kontinuerlig utveckling',
         description:
-          'Phasellus laoreet fermentum venenatis. Vivamus dapibus pulvinar arcu eget mattis. Fusce eget mauris leo.',
+          'Medicinsk kunskap utvecklas ständigt. Jag deltar regelbundet i vidareutbildningar och håller mig uppdaterad med de senaste forskningsrönen inom naprapati och sjukgymnastik.',
       },
       {
-        title: 'Ethical Practices',
+        title: 'Etiska principer',
         description:
-          'Vestibulum imperdiet libero et lectus molestie, et maximus augue porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+          'Integritet, professionalism och respekt för patientens autonomi är grundläggande i allt jag gör. Din hälsa och välbefinnande kommer alltid först.',
       },
     ]}
   />
+  -->
 
-  <!-- Steps2 Widget ****************** -->
-
-  <Steps2
-    title="Achievements"
-    subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla."
-    isReversed={true}
-    callToAction={{
-      text: 'See more',
-      href: '/',
-    }}
-    items={[
-      {
-        title: 'Global reach',
-        description: 'Nam malesuada urna in enim imperdiet tincidunt. Phasellus non tincidunt nisi, at elementum mi.',
-        icon: 'tabler:globe',
-      },
-      {
-        title: 'Positive customer feedback and reviews',
-        description:
-          'Cras semper nulla leo, eget laoreet erat cursus sed. Praesent faucibus massa in purus iaculis dictum.',
-        icon: 'tabler:message-star',
-      },
-      {
-        title: 'Awards and recognition as industry experts',
-        description:
-          'Phasellus lacinia cursus velit, eu malesuada magna pretium eu. Etiam aliquet tellus purus, blandit lobortis ex rhoncus vitae.',
-        icon: 'tabler:award',
-      },
-    ]}
-  />
-
-  <!-- Features2 Widget ************** -->
+  <!-- Features2 Widget - Location ************** -->
 
   <Features2
-    title="Our locations"
-    tagline="Find us"
-    columns={4}
+    title="Hitta till oss"
+    columns={1}
     items={[
       {
-        title: 'EE.UU',
-        description: '1234 Lorem Ipsum St, 12345, Miami',
-      },
-      {
-        title: 'Spain',
-        description: '5678 Lorem Ipsum St, 56789, Madrid',
-      },
-      {
-        title: 'Australia',
-        description: '9012 Lorem Ipsum St, 90123, Sydney',
-      },
-      {
-        title: 'Brazil',
-        description: '3456 Lorem Ipsum St, 34567, São Paulo',
+        title: 'Enköpings Rehabcenter',
+        description: 'Vi är belägna i centrala Enköping med goda kommunikationer. Parkering finns tillgänglig i närheten.',
+        icon: 'tabler:map-pin',
       },
     ]}
   />
 
-  <!-- Features2 Widget ************** -->
+  <!-- Features2 Widget - Contact ************** -->
 
   <Features2
-    title="Technical Support"
-    tagline="Contact us"
+    title="Kontakta mig"
     columns={2}
     items={[
       {
-        title: 'Chat with us',
+        title: 'Boka tid',
         description:
-          'Integer luctus laoreet libero, auctor varius purus rutrum sit amet. Ut nec molestie nisi, quis eleifend mi.',
-        icon: 'tabler:messages',
+          'Ring eller skicka ett meddelande för att boka din första konsultation. Vi erbjuder även akuttider för de som behöver snabb hjälp.',
+        icon: 'tabler:calendar',
       },
       {
-        title: 'Call us',
+        title: 'Frågor och rådgivning',
         description:
-          'Mauris faucibus finibus orci, in posuere elit viverra non. In hac habitasse platea dictumst. Cras lobortis metus a hendrerit congue.',
-        icon: 'tabler:headset',
+          'Har du frågor om dina besvär eller vill veta mer om våra behandlingar? Kontakta mig gärna så hjälper jag till.',
+        icon: 'tabler:phone',
       },
     ]}
   />

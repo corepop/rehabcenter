@@ -1,0 +1,176 @@
+---
+export const prerender = true;
+
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Ryggsmärta',
+  description: 'Få hjälp med ryggsmärta genom våra specialiserade behandlingar. Vi erbjuder naprapati och sjukgymnastik för att lindra smärta och förbättra rörlighet.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Våra behandlingar"
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Ryggsmärta behandling på Enköpings Rehabcenter',
+    }}
+  >
+    <Fragment slot="title">
+      Behandling av <br />
+      <span class="text-accent dark:text-white">Ryggsmärta</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Vi hjälper dig att bli av med ryggsmärta genom skräddarsydda behandlingar som kombinerar naprapati och sjukgymnastik.
+    </Fragment>
+  </Hero>
+
+  <!-- Content Widget - Causes ************** -->
+
+  <Content
+  isReversed
+    title="Vanliga orsaker till ryggsmärta"
+    subtitle="Ryggsmärta kan ha många olika orsaker och kräver ofta individuell bedömning"
+    items={[
+      {
+        title: 'Felaktig hållning',
+        description: 'Dålig ergonomi vid arbete eller vardagliga aktiviteter kan leda till spänningar och smärta.',
+      },
+      {
+        title: 'Muskulära obalanser',
+        description: 'Svaga eller överbelastade muskler kan skapa obalanser som orsakar smärta.',
+      },
+      {
+        title: 'Diskproblem',
+        description: 'Problem med diskarna mellan ryggkotorna kan ge upphov till ischias eller andra besvär.',
+      },
+      {
+        title: 'Ledförändringar',
+        description: 'Artros eller andra förändringar i ryggens leder kan orsaka kronisk smärta.',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/ultraljud-1.jpg',
+      alt: 'Ultraljudsundersökning av rygg',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Genom noggrann undersökning kan vi identifiera orsaken till din ryggsmärta och skapa en effektiv behandlingsplan.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Treatment methods ************** -->
+
+  <Content
+    title="Våra behandlingsmetoder"
+    subtitle="Vi använder evidensbaserade metoder för att behandla ryggsmärta effektivt"
+    items={[
+      {
+        title: 'Manuell terapi',
+        description: 'Mjukdelsbehandling, mobilisering och manipulation för att förbättra rörlighet och minska smärta.',
+      },
+      {
+        title: 'Rehabiliterande övningar',
+        description: 'Stärkande och stabiliserande övningar för att förebygga återfall och förbättra funktion.',
+      },
+      {
+        title: 'Ergonomisk rådgivning',
+        description: 'Råd om rätt hållning och arbetsställning för att undvika framtida problem.',
+      },
+      {
+        title: 'Smärtlindring',
+        description: 'Olika tekniker för att minska smärta och inflammation i akuta skeden.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Rehabiliteringsövningar för ryggsmärta',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Behandlingen anpassas alltid efter dina specifika behov och förutsättningar.
+      </p>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Prevention ************** -->
+
+  <Content
+    title="Förebyggande åtgärder"
+    subtitle="Lär dig hur du kan undvika ryggsmärta i framtiden"
+    items={[
+      {
+        title: 'Korrekt hållning',
+        description: 'Utbilda dig i rätt hållning vid olika aktiviteter och arbetsuppgifter.',
+      },
+      {
+        title: 'Regelbunden träning',
+        description: 'Stärka ryggens muskler genom regelbundna, lämpliga övningar.',
+      },
+      {
+        title: 'Viktkontroll',
+        description: 'Hålla en hälsosam vikt för att minska belastningen på ryggen.',
+      },
+      {
+        title: 'Arbetsmiljö',
+        description: 'Se till att din arbetsplats är ergonomiskt utformad.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Patient som får ergonomisk rådgivning',
+    }}
+  />
+
+  <!-- Features2 Widget - Success rates ************** -->
+
+  <Features2
+    title="Våra resultat"
+    columns={1}
+    items={[
+      {
+        title: 'Hög framgång',
+        description: 'Majoriteten av våra patienter upplever betydande förbättring efter behandling.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Långsiktig effekt',
+        description: 'Genom förebyggande åtgärder hjälper vi dig att undvika återfall.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget - Contact ************** -->
+
+  <Features2
+    title="Boka din behandling"
+    columns={2}
+    items={[
+      {
+        title: 'Kontakta oss',
+        description: 'Ring eller skicka ett meddelande för att boka din första konsultation.',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Snabb hjälp',
+        description: 'Vi erbjuder även akuttider för de som behöver snabb lindring av ryggsmärta.',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  />
+</Layout>

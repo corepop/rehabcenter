@@ -1,0 +1,175 @@
+---
+export const prerender = true;
+
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Axlar och Skuldror',
+  description: 'Specialiserad behandling av axelbesvär, impingement, frozen shoulder och andra axelrelaterade problem med evidensbaserade metoder.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Våra behandlingar"
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Axelbehandling på Enköpings Rehabcenter',
+    }}
+  >
+    <Fragment slot="title">
+      Behandling av <br />
+      <span class="text-accent dark:text-white">Axlar & Skuldror</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Vi har lång erfarenhet av att behandla axelbesvär som impingement, frozen shoulder och andra axelrelaterade problem.
+    </Fragment>
+  </Hero>
+
+  <!-- Content Widget - Common shoulder problems ************** -->
+
+  <Content
+    title="Vanliga axelbesvär"
+    subtitle="Axelproblem kan vara komplexa och kräver ofta specialiserad kunskap för rätt diagnos"
+    items={[
+      {
+        title: 'Impingement syndrom',
+        description: 'Smärta när armen lyfts, ofta på grund av rotatorcuffens problem.',
+      },
+      {
+        title: 'Frozen shoulder',
+        description: 'Stelhet och smärta i axeln som begränsar rörelseomfånget avsevärt.',
+      },
+      {
+        title: 'Rotatorcuff ruptur',
+        description: 'Skador på axelns rotatorcuff som kan orsaka svaghet och smärta.',
+      },
+      {
+        title: 'Axelledsartros',
+        description: 'Slitage i axelleden som orsakar smärta och nedsatt funktion.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Ultraljudsundersökning av axel',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Genom noggrann undersökning och eventuellt ultraljud kan vi fastställa den exakta diagnosen.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Treatment methods ************** -->
+
+  <Content
+    title="Våra behandlingsmetoder"
+    subtitle="Vi kombinerar manuell terapi med rehabiliteringsövningar för optimala resultat"
+    items={[
+      {
+        title: 'Manuell terapi',
+        description: 'Mobilisering och manipulation av axelleden för att förbättra rörlighet.',
+      },
+      {
+        title: 'Mjukdelsbehandling',
+        description: 'Behandling av spända muskler och triggerpunkter runt axeln.',
+      },
+      {
+        title: 'Rehabiliteringsprogram',
+        description: 'Skräddarsydda övningar för att stärka rotatorcuffen och förbättra stabilitet.',
+      },
+      {
+        title: 'Injektionsbehandling',
+        description: 'Vid behov kan vi erbjuda injektionsbehandling för smärtlindring.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Axelrehabträning med specialist',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Behandlingen anpassas efter diagnos och dina individuella förutsättningar.
+      </p>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Rehabilitation ************** -->
+
+  <Content
+    title="Rehabilitering och förebyggande"
+    subtitle="Rätt träning är avgörande för långsiktig förbättring av axelfunktionen"
+    items={[
+      {
+        title: 'Styrketräning',
+        description: 'Specifika övningar för att stärka axelns muskler och förbättra stabilitet.',
+      },
+      {
+        title: 'Rörlighetsträning',
+        description: 'Övningar för att förbättra och bibehålla axelns rörelseomfång.',
+      },
+      {
+        title: 'Balans och koordination',
+        description: 'Träning för att förbättra axelns funktionella förmåga.',
+      },
+      {
+        title: 'Skadeprevention',
+        description: 'Råd och övningar för att undvika framtida axelproblem.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Axelrehabilitering och förebyggande träning',
+    }}
+  />
+
+  <!-- Features2 Widget - Success rates ************** -->
+
+  <Features2
+    title="Behandlingsframgång"
+    columns={1}
+    items={[
+      {
+        title: 'Höga framgångstal',
+        description: 'Majoriteten av våra patienter med axelbesvär upplever betydande förbättring.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Funktionell återhämtning',
+        description: 'Målet är inte bara smärtlindring utan också återställd funktion.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget - Contact ************** -->
+
+  <Features2
+    title="Boka axelbehandling"
+    columns={2}
+    items={[
+      {
+        title: 'Specialiserad konsultation',
+        description: 'Boka tid för en grundlig undersökning av dina axelbesvär.',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Snabb bedömning',
+        description: 'Vi prioriterar akuta axelproblem för snabb smärtlindring.',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  />
+</Layout>

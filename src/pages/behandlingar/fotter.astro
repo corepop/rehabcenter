@@ -1,0 +1,175 @@
+---
+export const prerender = true;
+
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Fot- och Hälsensbesvär',
+  description: 'Behandling av hälsporre, plantar fasciit, fotledsproblem och andra nedre extremitetsbesvär med fokus på funktionell återhämtning.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Våra behandlingar"
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Fotbehandling på Enköpings Rehabcenter',
+    }}
+  >
+    <Fragment slot="title">
+      Behandling av <br />
+      <span class="text-accent dark:text-white">Fot- och Hälsenbesvär</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Vi behandlar alla typer av fotproblem, från hälsporre till fotledsskador, med fokus på funktionell återhämtning.
+    </Fragment>
+  </Hero>
+
+  <!-- Content Widget - Common foot problems ************** -->
+
+  <Content
+    title="Vanliga fotbesvär"
+    subtitle="Fotproblem kan påverka hela kroppens mekanik och kräver ofta omfattande behandling"
+    items={[
+      {
+        title: 'Hälsporre',
+        description: 'Smärta under hälen ofta orsakad av plantar fasciit eller kalkavlagringar.',
+      },
+      {
+        title: 'Plantar fasciit',
+        description: 'Inflammation i fotens långa senhinna som orsakar hälvärk.',
+      },
+      {
+        title: 'Fotledsskador',
+        description: 'Vrickningar, stukningar och andra skador i fotleden.',
+      },
+      {
+        title: 'Hallux valgus',
+        description: 'Störning av stortån som kan orsaka smärta och gångsvårigheter.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Ultraljudsundersökning av fot',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Fotproblem kan ofta härledas till felbelastning högre upp i kroppen, varför vi gör helhetsbedömningar.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Treatment methods ************** -->
+
+  <Content
+    title="Våra behandlingsmetoder"
+    subtitle="Vi kombinerar olika tekniker för optimal behandling av fotbesvär"
+    items={[
+      {
+        title: 'Ortopediska inlägg',
+        description: 'Skräddarsydda inlägg för att korrigera felbelastning och förbättra funktion.',
+      },
+      {
+        title: 'Manuell terapi',
+        description: 'Mobilisering av fotleder och behandling av spända muskler.',
+      },
+      {
+        title: 'Stötvågsbehandling',
+        description: 'ESWT för hälsporre och andra kroniska tillstånd.',
+      },
+      {
+        title: 'Rehabiliteringsträning',
+        description: 'Stärkande övningar för fotens muskler och förbättrad balans.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Fotbehandling och ortopediska inlägg',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Behandlingen inkluderar ofta bedömning av hela nedre extremiteten för bästa resultat.
+      </p>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Gait analysis ************** -->
+
+  <Content
+    title="Gånganalys och biomekanik"
+    subtitle="Professionell analys av gångmönster för att identifiera och korrigera felbelastningar"
+    items={[
+      {
+        title: 'Videoanalys',
+        description: 'Detaljerad analys av gångmönster för att identifiera problemområden.',
+      },
+      {
+        title: 'Belastningsmätning',
+        description: 'Mätning av tryckfördelning under fötterna vid gång.',
+      },
+      {
+        title: 'Korrigerande åtgärder',
+        description: 'Specifika åtgärder för att förbättra gångmönster och minska belastning.',
+      },
+      {
+        title: 'Förebyggande råd',
+        description: 'Råd om rätt skor och träning för att undvika framtida problem.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Gånganalys och biomekanisk undersökning',
+    }}
+  />
+
+  <!-- Features2 Widget - Results ************** -->
+
+  <Features2
+    title="Behandlingsframgång"
+    columns={1}
+    items={[
+      {
+        title: 'Hög förbättringsgrad',
+        description: 'Majoriteten av fotbesvär förbättras avsevärt med rätt behandling.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Funktionell förbättring',
+        description: 'Målet är förbättrad gångförmåga och minskad smärta vid aktivitet.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget - Contact ************** -->
+
+  <Features2
+    title="Boka fotbehandling"
+    columns={2}
+    items={[
+      {
+        title: 'Specialiserad konsultation',
+        description: 'Boka tid för grundlig undersökning av dina fotbesvär.',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Gånganalys',
+        description: 'Vi erbjuder professionell gånganalys för att identifiera problem.',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  />
+</Layout>

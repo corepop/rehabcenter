@@ -65,6 +65,65 @@ const postCollection = defineCollection({
   }),
 });
 
+const treatmentCollection = defineCollection({
+  loader: glob({ pattern: '*.json', base: 'src/content/treatments' }),
+  schema: z.object({
+    slug: z.string(),
+    metadata: z.object({
+      title: z.string(),
+      description: z.string(),
+    }),
+    hero: z.object({
+      tagline: z.string(),
+      image: z.object({
+        src: z.string(),
+        alt: z.string(),
+      }),
+      title: z.string(),
+      subtitle: z.string(),
+    }),
+    contentSections: z.array(
+      z.object({
+        title: z.string(),
+        subtitle: z.string(),
+        items: z.array(
+          z.object({
+            title: z.string(),
+            description: z.string(),
+          })
+        ),
+        image: z.object({
+          src: z.string(),
+          alt: z.string(),
+        }),
+        content: z.string().optional(),
+        bg: z.boolean().optional(),
+      })
+    ),
+    results: z.object({
+      title: z.string(),
+      items: z.array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+          icon: z.string(),
+        })
+      ),
+    }),
+    contact: z.object({
+      title: z.string(),
+      items: z.array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+          icon: z.string(),
+        })
+      ),
+    }),
+  }),
+});
+
 export const collections = {
   post: postCollection,
+  treatments: treatmentCollection,
 };

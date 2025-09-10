@@ -1,0 +1,175 @@
+---
+export const prerender = true;
+
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Yrsel och Balansproblem',
+  description: 'Specialiserad inom cervikogen huvudvärk, migrän, spänningshuvudvärk och yrselproblematik med holistisk approach.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Våra behandlingar"
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Yrselbehandling på Enköpings Rehabcenter',
+    }}
+  >
+    <Fragment slot="title">
+      Behandling av <br />
+      <span class="text-accent dark:text-white">Yrsel och Balansproblem</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Vi har specialiserad kompetens inom yrselproblematik och cervikogena besvär med holistisk behandlingsapproach.
+    </Fragment>
+  </Hero>
+
+  <!-- Content Widget - Types of dizziness ************** -->
+
+  <Content
+    title="Olika typer av yrsel"
+    subtitle="Yrsel kan ha många olika orsaker och kräver ofta differentierad diagnostik"
+    items={[
+      {
+        title: 'Cervikogen yrsel',
+        description: 'Yrsel som härstammar från nackproblematik och leder till balansstörningar.',
+      },
+      {
+        title: 'BPPV (godartad paroxysmal positionell vertigo)',
+        description: 'Kortvariga yrselattacker vid huvudrörelser, ofta orsakade av öronstenar.',
+      },
+      {
+        title: 'Vestibulär yrsel',
+        description: 'Yrsel från balansorganet i innerörat, kan vara kronisk eller attackvis.',
+      },
+      {
+        title: 'Cervikogen huvudvärk',
+        description: 'Huvudvärk som utgår från nacke och axlar, ofta ensidig.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Balansundersökning',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Våra specialiserade undersökningar hjälper oss att identifiera orsaken till dina yrselbesvär.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Treatment methods ************** -->
+
+  <Content
+    title="Våra behandlingsmetoder"
+    subtitle="Vi använder evidensbaserade tekniker för behandling av yrsel och balansproblem"
+    items={[
+      {
+        title: 'Manuell terapi',
+        description: 'Behandling av nacke och axlar för att förbättra blodcirkulation och nervfunktion.',
+      },
+      {
+        title: 'Balansövningar',
+        description: 'Specifika övningar för att träna balansorganet och förbättra stabilitet.',
+      },
+      {
+        title: 'Epley-manöver',
+        description: 'Specifik teknik för behandling av BPPV och andra positionella yrseltyper.',
+      },
+      {
+        title: 'Huvudvärksbehandling',
+        description: 'Behandling av cervikogena huvudvärk med fokus på triggerpunkter.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Yrselbehandling och balansövningar',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Behandlingen anpassas efter typ av yrsel och individens specifika behov.
+      </p>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Cervicogenic issues ************** -->
+
+  <Content
+    title="Cervikogena besvär"
+    subtitle="Problem som härstammar från nackregionen men ger symtom på andra ställen"
+    items={[
+      {
+        title: 'Cervikogen huvudvärk',
+        description: 'Huvudvärk som kommer från nacke och ger ensidig smärta.',
+      },
+      {
+        title: 'Cervikogen yrsel',
+        description: 'Yrsel som orsakas av nackproblem och leder till balansstörningar.',
+      },
+      {
+        title: 'Armsymtom',
+        description: 'Smärta och domningar i armar som kommer från nacke.',
+      },
+      {
+        title: 'Koncentrationssvårigheter',
+        description: 'Kognitiva symtom som kan följa med cervikogena besvär.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Cervikogen huvudvärk och nackproblem',
+    }}
+  />
+
+  <!-- Features2 Widget - Results ************** -->
+
+  <Features2
+    title="Behandlingsresultat"
+    columns={1}
+    items={[
+      {
+        title: 'Hög förbättringsgrad',
+        description: 'Majoriteten av yrselpatienter upplever betydande förbättring med rätt behandling.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Långsiktig effekt',
+        description: 'Genom rätt teknik och övningar kan vi ofta uppnå bestående förbättring.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget - Contact ************** -->
+
+  <Features2
+    title="Boka yrselbehandling"
+    columns={2}
+    items={[
+      {
+        title: 'Specialiserad konsultation',
+        description: 'Boka tid för grundlig undersökning av dina yrselbesvär.',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Akut yrselhjälp',
+        description: 'Vi erbjuder snabb bedömning vid akuta yrselattacker.',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  />
+</Layout>

@@ -288,3 +288,43 @@ export interface BookingIntegration extends Omit<Headline, 'classes'>, Widget {
   width?: string;
   className?: string;
 }
+
+// TREATMENT PAGE TYPES - Extended from existing widget types
+export interface TreatmentMetadata extends Pick<MetaData, 'title' | 'description'> {
+  title: string;  // Override to make required
+  description: string;  // Override to make required
+}
+
+export interface TreatmentHero extends Omit<Hero, 'actions' | 'content'> {
+  tagline: string;
+  image: Image;
+  title: string;
+  subtitle: string;
+}
+
+export interface TreatmentContentSection extends Omit<Content, 'bio' | 'name' | 'callToAction'> {
+  title: string;
+  subtitle: string;
+  items: Array<Pick<Item, 'title' | 'description'>>;
+  image: Image;
+  content?: string;
+  bg?: boolean;
+}
+
+export interface TreatmentResults extends Omit<Features, 'video' | 'columns' | 'defaultIcon' | 'callToAction1' | 'callToAction2' | 'isReversed' | 'isBeforeContent' | 'isAfterContent'> {
+  title: string;
+  items: Array<Pick<Item, 'title' | 'description' | 'icon'>>;
+}
+
+export interface TreatmentContact extends Omit<Features, 'image' | 'video' | 'columns' | 'defaultIcon' | 'callToAction1' | 'callToAction2' | 'isReversed' | 'isBeforeContent' | 'isAfterContent'> {
+  title: string;
+  items: Array<Pick<Item, 'title' | 'description' | 'icon'>>;
+}
+
+export interface TreatmentLayoutProps {
+  metadata: TreatmentMetadata;
+  hero: TreatmentHero;
+  section: TreatmentContentSection[];
+  results: TreatmentResults;
+  contact: TreatmentContact;
+}

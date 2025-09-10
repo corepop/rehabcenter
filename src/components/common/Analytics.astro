@@ -11,3 +11,36 @@ import { ANALYTICS } from 'astrowind:config';
     />
   ) : null
 }
+
+<script>
+  // Wait for GDPR consent before loading analytics
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if user has already given consent for analytics
+    const consent = localStorage.getItem('gdpr-consent');
+    if (consent) {
+      try {
+        const consentData = JSON.parse(consent);
+        if (consentData.analytics) {
+          // Analytics already consented, ensure gtag is properly configured
+          if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+              analytics_storage: 'granted'
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('Error parsing GDPR consent data:', e);
+      }
+    }
+
+    // Listen for consent changes
+    window.addEventListener('gdpr-consent-changed', (event: Event & { detail: { essential: boolean; analytics: boolean } }) => {
+      const consent = event.detail;
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          analytics_storage: consent.analytics ? 'granted' : 'denied'
+        });
+      }
+    });
+  });
+</script>

@@ -1,0 +1,175 @@
+---
+export const prerender = true;
+
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Knäproblem',
+  description: 'Expertis inom knäledsbesvär, meniskskador, korsbandsskador och artros. Kombinerar manuell terapi med rehabiliteringsövningar.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Våra behandlingar"
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Knäbehandling på Enköpings Rehabcenter',
+    }}
+  >
+    <Fragment slot="title">
+      Behandling av <br />
+      <span class="text-accent dark:text-white">Knäproblem</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Vi har omfattande erfarenhet av knäledsbesvär, från akuta skador till kroniska tillstånd som artros.
+    </Fragment>
+  </Hero>
+
+  <!-- Content Widget - Common knee problems ************** -->
+
+  <Content
+    title="Vanliga knäbesvär"
+    subtitle="Knäproblem kan vara både akuta skador och långvariga tillstånd som kräver olika behandlingsstrategier"
+    items={[
+      {
+        title: 'Meniskskador',
+        description: 'Skador på knäledens menisker som orsakar smärta, svullnad och låsning.',
+      },
+      {
+        title: 'Korsbandsskador',
+        description: 'Rupturer av främre eller bakre korsbandet som kräver stabilisering.',
+      },
+      {
+        title: 'Knäartros',
+        description: 'Slitage i knäleden som orsakar smärta och nedsatt funktion.',
+      },
+      {
+        title: 'Hopparknä',
+        description: 'Inflammation i knäskålssenan, vanligt hos idrottare.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Ultraljudsundersökning av knä',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Genom klinisk undersökning och eventuellt ultraljud kan vi fastställa diagnos och behandlingsbehov.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Treatment approaches ************** -->
+
+  <Content
+    title="Våra behandlingsmetoder"
+    subtitle="Vi erbjuder omfattande behandling för alla typer av knäproblem"
+    items={[
+      {
+        title: 'Manuell terapi',
+        description: 'Mobilisering av knäleden och kringliggande strukturer för förbättrad rörlighet.',
+      },
+      {
+        title: 'Rehabiliteringsträning',
+        description: 'Skräddarsydda program för att stärka muskler och förbättra stabilitet.',
+      },
+      {
+        title: 'Smärtlindring',
+        description: 'Olika tekniker för att minska inflammation och smärta i akuta skeden.',
+      },
+      {
+        title: 'Funktionell träning',
+        description: 'Träning för att återställa normal gång och andra dagliga aktiviteter.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Knärehabilitering och behandling',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Behandlingen anpassas efter skadans allvarlighetsgrad och dina aktivitetsnivåer.
+      </p>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget - Sports injuries ************** -->
+
+  <Content
+    title="Idrottsskador och prevention"
+    subtitle="Särskild expertis inom idrottsrelaterade knäskador och skadeprevention"
+    items={[
+      {
+        title: 'Akuta skador',
+        description: 'Snabb bedömning och behandling av idrottsskador för optimal läkning.',
+      },
+      {
+        title: 'Prehab träning',
+        description: 'Förebyggande träning för att minska risken för framtida skador.',
+      },
+      {
+        title: 'Återgång till idrott',
+        description: 'Gradvis återgång till träning med fokus på teknik och belastning.',
+      },
+      {
+        title: 'Skadeprevention',
+        description: 'Råd om rätt teknik och träning för att undvika återfall.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Idrottsskador och knäprevention',
+    }}
+  />
+
+  <!-- Features2 Widget - Results ************** -->
+
+  <Features2
+    title="Behandlingsresultat"
+    columns={1}
+    items={[
+      {
+        title: 'Hög återhämtningsgrad',
+        description: 'Majoriteten av knäskador läker väl med rätt behandling och rehabilitering.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Funktionell förbättring',
+        description: 'Målet är att återställa full funktion och möjliggöra återgång till aktiviteter.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget - Contact ************** -->
+
+  <Features2
+    title="Boka knäbehandling"
+    columns={2}
+    items={[
+      {
+        title: 'Akut bedömning',
+        description: 'Vid akuta knäskador erbjuder vi snabb bedömning och behandling.',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Specialiserad konsultation',
+        description: 'Boka tid för grundlig undersökning av dina knäbesvär.',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  />
+</Layout>
