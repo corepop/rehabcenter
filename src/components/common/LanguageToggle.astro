@@ -1,0 +1,54 @@
+---
+import { Icon } from 'astro-icon/components';
+import { UI, SITE } from 'astrowind:config';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const currentLocale = Astro.currentLocale;
+const url = Astro.url;
+
+// Get the path without base and locale prefixes for getRelativeLocaleUrl
+const basePath = SITE.base || '';
+let cleanPathname = url.pathname;
+
+// Remove base path
+if (basePath && cleanPathname.startsWith(basePath)) {
+  cleanPathname = cleanPathname.slice(basePath.length) || '/';
+}
+
+// Remove locale prefix if present (for non-default locales)
+if (currentLocale !== 'sv' && cleanPathname.startsWith(`/${currentLocale}`)) {
+  cleanPathname = cleanPathname.slice(`/${currentLocale}`.length) || '/';
+}
+
+export interface Props {
+  label?: string;
+  class?: string;
+  iconClass?: string;
+  iconName?: string;
+}
+---
+
+<div class="flex gap-2">
+  <a
+    href={getRelativeLocaleUrl('sv', cleanPathname)}
+    class:list={[
+      'px-2 py-1 text-sm rounded transition-colors',
+      currentLocale === 'sv'
+        ? 'bg-primary text-white'
+        : 'text-muted hover:bg-gray-100 dark:hover:bg-gray-700'
+    ]}
+  >
+    SV
+  </a>
+  <a
+    href={getRelativeLocaleUrl('en', cleanPathname)}
+    class:list={[
+      'px-2 py-1 text-sm rounded transition-colors',
+      currentLocale === 'en'
+        ? 'bg-primary text-white'
+        : 'text-muted hover:bg-gray-100 dark:hover:bg-gray-700'
+    ]}
+  >
+    EN
+  </a>
+</div>

@@ -1,0 +1,23 @@
+---
+export interface Props {
+  treatment: string;
+  locale: string;
+}
+
+export async function getStaticPaths() {
+  const treatments = ['ryggsmarta', 'nacksmarta', 'skuldror', 'eswt', 'knan', 'fotter', 'yrsel'];
+
+  return treatments.map(treatment => ({
+    params: { treatment },
+    props: { locale: 'sv' }
+  }));
+}
+
+const { treatment, locale } = Astro.props as Props;
+---
+
+<div>
+  <h1>Behandling: {treatment}</h1>
+  <p>Språk: {locale}</p>
+  <!-- Treatment content will go here -->
+</div>

@@ -1,0 +1,201 @@
+---
+export const prerender = true;
+
+import Features2 from '~/components/widgets/Features2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Content from '~/components/widgets/Content.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'About Johny Åhman - Enköpings Rehabcenter',
+  description:
+    'Get to know Johny Åhman, licensed physiotherapist and naprapath with over 35 years of experience in pain relief and rehabilitation in Enköping.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="About us"
+    image={{
+      src: '~/assets/images/undersokning.jpg',
+      alt: 'Johny Åhman - Licensed Physiotherapist and Naprapath',
+    }}
+  >
+    <Fragment slot="title">
+      Meet Johny Åhman - <br />
+      <span class="text-accent dark:text-white"> Your personal pain expert in Enköping</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      With over 35 years of experience, I help people in Enköping and surrounding areas to get rid of pain and
+      improve their quality of life through naprapathy and physiotherapy.
+    </Fragment>
+  </Hero>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="My experience in numbers"
+    stats={[
+      { title: 'Years of experience', amount: '35+' },
+      { title: 'Treated patients', amount: '10,000+' },
+      { title: 'Special areas', amount: '6' },
+      { title: 'OMT level', amount: '3' },
+    ]}
+  />
+
+  <!-- Content Widget - Personal Story ************** -->
+
+  <Content
+    title="My journey in physiotherapy"
+    subtitle="Licensed Physiotherapist and Naprapath"
+    items={[
+      {
+        title: 'A passion for pain relief',
+        description:
+          'My journey began over 35 years ago when I realized that many people suffer unnecessarily from pain that can be treated effectively. Over the years, I have specialized in combining naprapathy and physiotherapy to provide the best possible results.',
+      },
+      {
+        title: 'Continuous further education',
+        description:
+          'I have completed OMT training level 3, which is the highest level in orthopedic manual therapy. In addition, I have specialized in shoulder, knee and foot problems, as well as dizziness and headache.',
+      },
+      {
+        title: 'Locally rooted in Enköping',
+        description:
+          'As an Enköping resident, I understand the challenges faced by the local population. I am engaged in the local community and gladly help with advice and treatment to improve the quality of life for my neighbors.',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/johny.webp',
+      alt: 'Johny Åhman during treatment',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Why choose Enköpings Rehabcenter?
+      </h3>
+      The combination of long experience, specializations and personal care allows me to offer tailored treatments
+      that really work.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Features3 Widget - Specializations ************** -->
+
+  <Features3
+    title="My special areas"
+    subtitle="Over the years, I have specialized in several areas to give you the best possible care"
+    columns={3}
+    isAfterContent={false}
+    items={[
+      {
+        title: 'Shoulder problems',
+        description:
+          'Specialized treatment of shoulder injuries, impingement, frozen shoulder and other shoulder-related problems with evidence-based methods.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Knee problems',
+        description:
+          'Expertise in knee joint problems, meniscus injuries, cruciate ligament injuries and osteoarthritis. Combines manual therapy with rehabilitation exercises.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Foot and heel problems',
+        description:
+          'Treatment of heel spurs, plantar fasciitis, ankle problems and other lower extremity problems with focus on functional recovery.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Headache & Dizziness',
+        description:
+          'Specialized in cervicogenic headache, migraine, tension headache and dizziness problems with holistic approach.',
+        icon: 'tabler:brain',
+      },
+      {
+        title: 'Back and Neck problems',
+        description:
+          'Extensive experience with all types of back and neck problems, from acute injuries to chronic conditions.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Sports medicine',
+        description:
+          'Helps active people return to training and competition through tailored rehab programs and injury prevention.',
+        icon: 'tabler:activity',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/ultraljud-1.jpg',
+      alt: 'Johny Åhman demonstrates treatment technique',
+    }}
+  />
+
+  <!-- Steps2 Widget - Values ****************** 
+
+  <Steps2
+    title="Mina värderingar"
+    subtitle="Min approach till vård bygger på dessa grundläggande principer som guidar allt jag gör"
+    items={[
+      {
+        title: 'Patientfokuserad vård',
+        description:
+          'Varje patient är unik och förtjänar individuell uppmärksamhet. Jag lyssnar noga på dina bekymmer och skapar behandlingsplaner som är skräddarsydda för just dina behov.',
+      },
+      {
+        title: 'Kontinuerlig utveckling',
+        description:
+          'Medicinsk kunskap utvecklas ständigt. Jag deltar regelbundet i vidareutbildningar och håller mig uppdaterad med de senaste forskningsrönen inom naprapati och sjukgymnastik.',
+      },
+      {
+        title: 'Etiska principer',
+        description:
+          'Integritet, professionalism och respekt för patientens autonomi är grundläggande i allt jag gör. Din hälsa och välbefinnande kommer alltid först.',
+      },
+    ]}
+  />
+  -->
+
+  <!-- Features2 Widget - Location ************** -->
+
+  <Features2
+    title="Find us"
+    columns={1}
+    items={[
+      {
+        title: 'Enköpings Rehabcenter',
+        description: 'We are located in central Enköping with good communications. Parking is available nearby.',
+        icon: 'tabler:map-pin',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget - Contact ************** -->
+
+  <Features2
+    title="Contact me"
+    columns={2}
+    items={[
+      {
+        title: 'Book appointment',
+        description:
+          'Call or send a message to book your first consultation. We also offer emergency appointments for those who need quick help.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: 'Questions and advice',
+        description:
+          'Do you have questions about your problems or want to know more about our treatments? Feel free to contact me and I will help.',
+        icon: 'tabler:phone',
+      },
+    ]}
+  />
+</Layout>

@@ -1,123 +1,133 @@
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import sv from './i18n/sv';
+import en from './i18n/en';
 
-export const headerData = {
-  links: [
-    {
-      text: 'Hem',
-      links: [
-        {
-          text: 'Prissättning',
-          href: getPermalink('/pricing'),
-        },
-        {
-          text: 'Om oss',
-          href: getPermalink('/about'),
-        },
-        {
-          text: 'Kontakt',
-          href: getPermalink('/contact'),
-        },
-        {
-          text: 'Integritetspolicy',
-          href: getPermalink('/privacy'),
-        },
-      ],
-    },
-    {
-      text: 'Behandlingar',
-      links: [
-        {
-          text: 'Stötvågsbehandling - ESWT',
-          href: getPermalink('/behandlingar/eswt'),
-        },
-        {
-          text: 'Ryggsmärta',
-          href: getPermalink('/behandlingar/ryggsmarta'),
-        },
-        {
-          text: 'Nacksmärta',
-          href: getPermalink('/behandlingar/nacksmarta'),
-        },
-        {
-          text: 'Axlar & Skuldror',
-          href: getPermalink('/behandlingar/skuldror'),
-        },
-        {
-          text: 'Knäproblem',
-          href: getPermalink('/behandlingar/knan'),
-        },
-        {
-          text: 'Fot- & Hälsenbesvär',
-          href: getPermalink('/behandlingar/fotter'),
-        },
-        {
-          text: 'Yrsel & Balans',
-          href: getPermalink('/behandlingar/yrsel'),
-        },
-      ],
-    },
-    {
-      text: 'Blogg',
-      links: [
-        {
-          text: 'Blogglista',
-          href: getBlogPermalink(),
-        },
-        {
-          text: 'Taggsida',
-          href: getPermalink('astro', 'tag'),
-        },
-      ],
-    },
-  ],
-  actions: [{ text: 'Boka tid', href: 'https://boka.antwork.se/238', target: '_blank' }],
-};
+export function getHeaderData(locale: string = 'sv') {
+  const t = locale === 'en' ? en : sv;
 
-export const footerData = {
-  links: [
-    {
-      title: 'Behandlingar',
-      links: [
-        { text: 'Ryggsmärta & Ischias', href: getPermalink('/behandlingar/ryggsmarta') },
-        { text: 'Nacksmärta & Huvudvärk', href: getPermalink('/behandlingar/nacksmarta') },
-        { text: 'Skulder & Armar', href: getPermalink('/behandlingar/skuldror') },
-        { text: 'Knän & Höfter', href: getPermalink('/behandlingar/knan') },
-        { text: 'Fötter & Hälsenor', href: getPermalink('/behandlingar/fotter') },
-        { text: 'Yrsel & Balans', href: getPermalink('/behandlingar/yrsel') },
-      ],
-    },
-    {
-      title: 'Om Kliniken',
-      links: [
-        { text: 'Om Johny Åhman', href: getPermalink('/about') },
-        { text: 'Våra Tjänster', href: getPermalink('/services') },
-        { text: 'Priser & Bokning', href: getPermalink('/pricing') },
-        { text: 'Kontaktuppgifter', href: getPermalink('/contact') },
-        { text: 'Tips & Råd', href: getBlogPermalink() },
-      ],
-    },
-    {
-      title: 'Information',
-      links: [
-        { text: 'Integritetspolicy', href: getPermalink('/privacy') },
-        { text: 'Användarvillkor', href: getPermalink('/terms') },
-        { text: 'Cookies', href: getPermalink('/cookies') },
-        { text: 'GDPR & Dataskydd', href: getPermalink('/privacy') },
-      ],
-    },
-  ],
-  secondaryLinks: [
-    { text: 'Integritetspolicy', href: getPermalink('/privacy') },
-    { text: 'Kontakta oss', href: getPermalink('/contact') },
-  ],
-  socialLinks: [
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-  ],
-  footNote: `
-    Enköpings Rehabcenter © ${new Date().getFullYear()}
-    <br>
-    <small>Vi följer svenska dataskyddsregler (GDPR) och värnar om din integritet.</small>
-  `,
-};
+  return {
+    links: [
+      {
+        text: t.nav.home,
+        links: [
+          {
+            text: t.nav.pricing,
+            href: getPermalink('/pricing'),
+          },
+          {
+            text: t.nav.about,
+            href: getPermalink('/about'),
+          },
+          {
+            text: t.nav.contact,
+            href: getPermalink('/contact'),
+          },
+          {
+            text: t.nav.privacy,
+            href: getPermalink('/privacy'),
+          },
+        ],
+      },
+      {
+        text: t.nav.treatments,
+        links: [
+          {
+            text: t.treatments.eswt,
+            href: getPermalink('/behandlingar/eswt'),
+          },
+          {
+            text: t.treatments.backPain,
+            href: getPermalink('/behandlingar/ryggsmarta'),
+          },
+          {
+            text: t.treatments.neckPain,
+            href: getPermalink('/behandlingar/nacksmarta'),
+          },
+          {
+            text: t.treatments.shoulders,
+            href: getPermalink('/behandlingar/skuldror'),
+          },
+          {
+            text: t.treatments.knees,
+            href: getPermalink('/behandlingar/knan'),
+          },
+          {
+            text: t.treatments.feet,
+            href: getPermalink('/behandlingar/fotter'),
+          },
+          {
+            text: t.treatments.vertigo,
+            href: getPermalink('/behandlingar/yrsel'),
+          },
+        ],
+      },
+      {
+        text: t.nav.blog,
+        links: [
+          {
+            text: t.nav.blogList,
+            href: getBlogPermalink(),
+          },
+          {
+            text: t.nav.tagPage,
+            href: getPermalink('astro', 'tag'),
+          },
+        ],
+      },
+    ],
+    actions: [{ text: t.nav.bookAppointment, href: 'https://boka.antwork.se/238', target: '_blank' }],
+  };
+}
+
+export function getFooterData(locale: string = 'sv') {
+  const t = locale === 'en' ? en : sv;
+
+  return {
+    links: [
+      {
+        title: t.footer.treatments,
+        links: [
+          { text: t.treatments.backPain, href: getPermalink('/behandlingar/ryggsmarta') },
+          { text: t.treatments.neckPain, href: getPermalink('/behandlingar/nacksmarta') },
+          { text: t.treatments.shoulders, href: getPermalink('/behandlingar/skuldror') },
+          { text: t.treatments.knees, href: getPermalink('/behandlingar/knan') },
+          { text: t.treatments.feet, href: getPermalink('/behandlingar/fotter') },
+          { text: t.treatments.vertigo, href: getPermalink('/behandlingar/yrsel') },
+        ],
+      },
+      {
+        title: t.footer.aboutClinic,
+        links: [
+          { text: t.nav.about, href: getPermalink('/about') },
+          { text: t.nav.services, href: getPermalink('/services') },
+          { text: t.nav.pricing, href: getPermalink('/pricing') },
+          { text: t.nav.contact, href: getPermalink('/contact') },
+          { text: 'Tips & Råd', href: getBlogPermalink() },
+        ],
+      },
+      {
+        title: t.footer.information,
+        links: [
+          { text: t.nav.privacy, href: getPermalink('/privacy') },
+          { text: t.footer.terms, href: getPermalink('/terms') },
+          { text: t.footer.cookies, href: getPermalink('/cookies') },
+          { text: t.footer.gdpr, href: getPermalink('/privacy') },
+        ],
+      },
+    ],
+    secondaryLinks: [
+      { text: t.nav.privacy, href: getPermalink('/privacy') },
+      { text: t.footer.contactUs, href: getPermalink('/contact') },
+    ],
+    socialLinks: [
+      { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
+      { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
+      { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
+    ],
+    footNote: `
+      ${t.footer.copyright} ${new Date().getFullYear()}
+      <br>
+      <small>Vi följer svenska dataskyddsregler (GDPR) och värnar om din integritet.</small>
+    `,
+  };
+}

@@ -2,7 +2,7 @@ site:
   name: Enköpings Rehabcenter
   site: 'https://corepop.github.io'
   base: '/rehabcenter'
-  trailingSlash: false
+  trailingSlash: true
 
   googleSiteVerificationId: false
 

@@ -1,0 +1,67 @@
+---
+export const prerender = true;
+
+import Layout from '~/layouts/PageLayout.astro';
+// import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Contact',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <!--   <HeroText tagline="Contact" title="Let's Connect!" /> -->
+
+  <ContactUs
+    id="form"
+    title="Contact Enköpings Rehabcenter"
+    subtitle="Do you have questions about your problems or want to book an appointment? Feel free to contact us! We are here to help you feel better."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Name',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email',
+      },
+    ]}
+    textarea={{
+      label: 'Message',
+    }}
+    disclaimer={{
+      label:
+        'By submitting this form, you agree that your personal data is processed according to our privacy policy.',
+    }}
+    description="We usually respond within 24 hours on weekdays."
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Contact us"
+    items={[
+      {
+        title: 'Phone',
+        description: '0171-123 45 67',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Email',
+        description: 'info@enkopingsrehabcenter.se',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Address',
+        description: 'Storgatan 12, 745 30 Enköping',
+        icon: 'tabler:map-pin',
+      },
+    ]}
+  />
+</Layout>

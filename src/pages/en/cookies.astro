@@ -1,0 +1,257 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import Headline from '~/components/ui/Headline.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Header from '~/components/widgets/Header.astro';
+
+const metadata = {
+  title: 'Cookie-inställningar',
+  description: 'Hantera dina cookie-inställningar och integritetsinställningar för Enköpings Rehabcenter.',
+};
+---
+
+<PageLayout {metadata}>
+  <WidgetWrapper containerClass="max-w-4xl">
+    <Headline
+      title="Cookie-inställningar"
+      subtitle="Hantera dina cookie-inställningar och kontrollera hur vi använder dina uppgifter."
+      tagline="Integritet & Cookies"
+    />
+
+    <div class="space-y-8">
+      <!-- Cookie Categories -->
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Cookie-inställningar</h2>
+
+        <div class="space-y-6">
+          <!-- Essential Cookies -->
+          <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Nödvändiga cookies</h3>
+              <span
+                class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium"
+              >
+                Alltid aktiv
+              </span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 mb-3">
+              Dessa cookies är nödvändiga för att webbplatsen ska fungera korrekt. De möjliggör grundläggande funktioner
+              såsom säkerhet, nätverkshantering och tillgänglighet. Du kan inte inaktivera dessa cookies.
+            </p>
+            <div class="flex items-center">
+              <input type="checkbox" checked disabled class="mr-3" />
+              <label class="text-sm text-gray-700 dark:text-gray-300">Krävs för webbplatsens funktion</label>
+            </div>
+          </div>
+
+          <!-- Analytics Cookies -->
+          <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Analyscookies</h3>
+              <span
+                id="analytics-status"
+                class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm font-medium"
+              >
+                Kontrollerar...
+              </span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 mb-3">
+              Dessa cookies hjälper oss att förstå hur besökare interagerar med vår webbplats genom att samla in och
+              rapportera information anonymt. Detta hjälper oss att förbättra webbplatsens prestanda och
+              användarupplevelse.
+            </p>
+            <div class="flex items-center">
+              <input type="checkbox" id="analytics-toggle" class="mr-3" />
+              <label for="analytics-toggle" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
+                Tillåt analyscookies för att hjälpa förbättra vår webbplats
+              </label>
+            </div>
+          </div>
+
+          <!-- Marketing Cookies -->
+          <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Marknadsföringscookies</h3>
+              <span
+                class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm font-medium"
+              >
+                Används inte
+              </span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 mb-3">
+              Dessa cookies används för att spåra besökare över webbplatser för att visa relevanta annonser. Vi använder
+              för närvarande inte marknadsföringscookies på vår webbplats.
+            </p>
+            <div class="flex items-center">
+              <input type="checkbox" disabled class="mr-3" />
+              <label class="text-sm text-gray-500 dark:text-gray-400"
+                >Används för närvarande inte på denna webbplats</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-8 flex flex-col sm:flex-row sm:justify-center gap-4">
+          <button
+            id="save-preferences"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          >
+            Spara inställningar
+          </button>
+          <button
+            id="accept-all-cookies-page"
+            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          >
+            Acceptera alla cookies
+          </button>
+          <button
+            id="reject-all-cookies"
+            class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          >
+            Avvisa icke-nödvändiga
+          </button>
+        </div>
+      </div>
+
+      <!-- Additional Information -->
+      <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Dina integritetsrättigheter</h3>
+        <div class="text-blue-800 dark:text-blue-200 space-y-2">
+          <p>• Du har rätt att när som helst återkalla ditt samtycke</p>
+          <p>• Du kan hantera dina cookie-inställningar genom dina webbläsarinställningar</p>
+          <p>
+            • För mer information, läs vår <a href="/privacy" class="underline hover:text-blue-600"
+              >Integritetspolicy</a>
+          </p>
+          <p>• Kontakta oss om du har frågor om dina datarättigheter</p>
+        </div>
+      </div>
+    </div>
+  </WidgetWrapper>
+</Layout>
+
+<script>
+  class CookieSettingsManager {
+    private analyticsCheckbox: HTMLInputElement | null = null;
+    private analyticsStatus: HTMLElement | null = null;
+
+    constructor() {
+      this.init();
+    }
+
+    private init() {
+      this.analyticsCheckbox = document.getElementById('analytics-toggle') as HTMLInputElement;
+      this.analyticsStatus = document.getElementById('analytics-status');
+
+      this.loadCurrentPreferences();
+      this.bindEvents();
+    }
+
+    private loadCurrentPreferences() {
+      const consent = localStorage.getItem('gdpr-consent');
+      if (consent) {
+        try {
+          const consentData = JSON.parse(consent);
+          if (this.analyticsCheckbox) {
+            this.analyticsCheckbox.checked = consentData.analytics || false;
+          }
+          this.updateStatus(consentData.analytics || false);
+        } catch (e) {
+          console.warn('Error loading cookie preferences:', e);
+          this.updateStatus(false);
+        }
+      } else {
+        this.updateStatus(false);
+      }
+    }
+
+    private updateStatus(enabled: boolean) {
+      if (this.analyticsStatus) {
+        this.analyticsStatus.textContent = enabled ? 'Aktiverad' : 'Inaktiverad';
+        this.analyticsStatus.className = enabled
+          ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium'
+          : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-1 rounded-full text-sm font-medium';
+      }
+    }
+
+    private bindEvents() {
+      // Analytics toggle
+      if (this.analyticsCheckbox) {
+        this.analyticsCheckbox.addEventListener('change', () => {
+          this.updateStatus(this.analyticsCheckbox!.checked);
+        });
+      }
+
+      // Save preferences
+      const saveBtn = document.getElementById('save-preferences');
+      saveBtn?.addEventListener('click', () => {
+        this.savePreferences();
+      });
+
+      // Accept all
+      const acceptAllBtn = document.getElementById('accept-all-cookies-page');
+      acceptAllBtn?.addEventListener('click', () => {
+        this.setAllPreferences(true);
+      });
+
+      // Reject non-essential
+      const rejectBtn = document.getElementById('reject-all-cookies');
+      rejectBtn?.addEventListener('click', () => {
+        this.setAllPreferences(false);
+      });
+    }
+
+    private savePreferences() {
+      const analyticsEnabled = this.analyticsCheckbox?.checked || false;
+
+      const consent = {
+        essential: true,
+        analytics: analyticsEnabled,
+        timestamp: Date.now(),
+        version: '1.0',
+      };
+
+      localStorage.setItem('gdpr-consent', JSON.stringify(consent));
+
+      // Dispatch event for other components
+      window.dispatchEvent(
+        new CustomEvent('gdpr-consent-changed', {
+          detail: { essential: true, analytics: analyticsEnabled },
+        })
+      );
+
+      // Show success message
+      this.showMessage('Dina cookie-inställningar har sparats!', 'success');
+    }
+
+    private setAllPreferences(acceptAll: boolean) {
+      if (this.analyticsCheckbox) {
+        this.analyticsCheckbox.checked = acceptAll;
+      }
+      this.updateStatus(acceptAll);
+      this.savePreferences();
+    }
+
+    private showMessage(message: string, type: 'success' | 'error') {
+      // Create message element
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg ${
+        type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+      }`;
+      messageDiv.textContent = message;
+
+      document.body.appendChild(messageDiv);
+
+      // Remove after 3 seconds
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 3000);
+    }
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new CookieSettingsManager();
+  });
+</script>

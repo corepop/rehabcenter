@@ -1,0 +1,393 @@
+---
+export const prerender = true;
+
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import PersonalIntroduction from '~/components/widgets/PersonalIntroduction.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import BookingIntegration from '~/components/widgets/BookingIntegration.astro';
+
+const metadata = {
+  title: 'Enköpings Rehabcenter — Personal care in naprapathy and physiotherapy in Enköping',
+  description:
+    'Welcome! My name is Johny Åhman, naprapath and licensed physiotherapist with over 35 years of experience. I offer personal and evidence-based treatment for pain and discomfort in back, neck, shoulders, knees, feet etc. Book an appointment easily online.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book appointment',
+        href: '#booking',
+        icon: 'tabler:calendar',
+      },
+      { text: 'Read more about me', href: '#om-mig' },
+    ]}
+    image={{ src: '~/assets/images/johny.webp', alt: 'Johny Åhman – Enköpings Rehabcenter' }}
+  >
+    <Fragment slot="title">
+      Hi, my name is Johny Åhman – <span class="hidden xl:inline">naprapath and </span><span
+        class="text-accent text-blue-600">licensed physiotherapist</span
+      > in Enköping
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">Emergency appointments available!</span>
+      <span class="hidden sm:inline"
+        ><span class="font-semibold">Welcome to Enköpings Rehabcenter.</span> I help you quickly with pain in back,
+        neck, shoulders, knees and feet.</span
+      >
+      With over 35 years of experience, I combine naprapathy and physiotherapy to get you pain-free as quickly as possible.
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note title="200kr:" description="County tax and Free card apply" />
+
+  <!-- Personal Introduction Widget *** -->
+  <PersonalIntroduction
+    id="om-mig"
+    title="Hi, my name is Johny"
+    subtitle="Naprapath and licensed physiotherapist in Enköping"
+    name="Johny Åhman"
+    bio={`<p>I am passionate about helping people get back to a pain-free and active life. With over 35 years of experience, I offer personal, safe and evidence-based care.</p>
+  <ul class="list-disc ml-5 mt-3 space-y-1">
+    <li>OMT level 3 (orthopedic manual therapy)</li>
+    <li>Special competence in shoulder, knee and foot problems</li>
+    <li>Interest and experience in dizziness and headache</li>
+  </ul>`}
+    image={{
+      src: '~/assets/images/johny.webp',
+      alt: 'Johny Åhman',
+    }}
+  />
+
+  <!-- Booking Integration Widget **** -->
+
+  <BookingIntegration
+    id="booking"
+    height="700px"
+    className="max-w-4xl mx-auto"
+    title="Book appointment online"
+    subtitle="Easy and fast - choose the time that suits you best"
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </BookingIntegration>
+
+  <!-- Testimonials Widget *********** -->
+
+  <Testimonials
+    title="What my patients say"
+    subtitle="Read about experiences from patients in Enköping who have been helped with their problems"
+    testimonials={[
+      {
+        title: 'Fantastic help with back pain',
+        testimonial:
+          'After years of back pain that limited my daily life, I sought help from Johny. Already after a few treatments, I noticed a big improvement. His knowledge and personal commitment made all the difference. I recommend him warmly!',
+        name: 'Anna L.',
+        job: 'Teacher, Enköping',
+      },
+      {
+        title: 'Quick relief from neck strain',
+        testimonial:
+          'I got acute neck strain and could barely move my head. Johny saw me the same day and after the treatment I could move freely again. His explanations about why the problems arose helped me understand and prevent future issues.',
+        name: 'Erik M.',
+        job: 'Entrepreneur, Enköping',
+      },
+      {
+        title: 'Return to training after knee injury',
+        testimonial:
+          'After a knee injury, I never thought I would be able to run again. With Johny\'s rehab program and expertise, I have not only returned to running but also improved my technique. His commitment and professionalism are outstanding.',
+        name: 'Maria K.',
+        job: 'Running coach, Strängnäs',
+      },
+    ]}
+    callToAction={{
+      text: 'Book your consultation',
+      href: '#booking',
+      icon: 'tabler:calendar',
+    }}
+  />
+
+  <!-- Features Widget *************** 
+
+  <Features
+    id="features"
+    tagline="Features"
+    title="Vad kan Enköpings Rehabcenter hjälpa dig med?"
+    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023 and 2024."
+    items={[
+      {
+        title: 'Ryggsmärta/akut ryggont/ischias',
+        description:
+          'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
+        icon: 'tabler:mood-sick',
+      },
+      {
+        title: 'Huvudvärk/spänningshuvudvärk',
+        description:
+          'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
+        icon: 'tabler:mood-sick',
+      },
+      {
+        title: 'Nacksmärtor/nackspärr',
+        description:
+          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
+        icon: 'tabler:mood-sick',
+      },
+      {
+        title: 'Skuldersmärta',
+        description:
+          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
+        icon: 'tabler:mood-sick',
+      },
+      {
+        title: 'Ont i fötter och hälsenor',
+        description:
+          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
+        icon: 'tabler:shoe',
+      },
+      {
+        title: 'Yrsel',
+        description:
+          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
+        icon: 'tabler:mood-sick',
+      },
+    ]}
+  />
+  -->
+  <!-- Content Widget ****************
+
+  <Content
+    isReversed
+    tagline="Inside template"
+    title="AstroWind's Blueprint: Fun Meets Functionality!"
+    items={[
+      {
+        title: 'Built on top of Astro 5.0',
+        description:
+          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+      },
+      {
+        title: 'Styled using Tailwind CSS',
+        description:
+          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+      },
+      {
+        title: 'Cross-browser compatibility',
+        description:
+          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Colorful Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
+      Gain a competitive advantage by incorporating industry leading practices
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  -->
+
+  <!-- Content Widget **************** -->
+
+  <!-- Content Widget **************** 
+
+  <Content
+    isReversed
+    isAfterContent
+    items={[
+      {
+        title: 'Enhanced user engagement',
+        description:
+          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
+      },
+      {
+        title: 'Continuous improvement',
+        description:
+          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
+      },
+      {
+        title: 'Time and resource efficiency',
+        description:
+          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
+      },
+      {
+        title: 'Community support',
+        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Astronauts Image',
+    }}
+  >
+    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+  -->
+
+  <!-- Steps Widget ****************** -->
+
+  <!-- Features2 Widget ************** 
+
+  <Features2 id="tjanster"
+    title="Hur jag kan hjälpa dig"
+    subtitle="Vanliga besvär jag behandlar – med personligt bemötande"
+    items={[
+      {
+        title: 'Ryggsmärta/ischias',
+        description: 'Akut eller långvarig smärta i rygg och ben. Noggrann undersökning och effektiv behandling för snabb lindring.',
+        icon: 'flat-color-icons:template',
+      },
+      {
+        title: 'Huvudvärk/spänningshuvudvärk',
+        description:
+          'Utredning av bakomliggande orsaker i nacke och käke. Behandling och råd för att förebygga återkommande besvär.',
+        icon: 'flat-color-icons:gallery',
+      },
+      {
+        title: 'Nacksmärta/nackspärr',
+        description:
+          'Akut nackspärr eller stelhet. Skonsam manuell behandling och övningar som ger rörlighet och smärtlindring.',
+        icon: 'flat-color-icons:approval',
+      },
+      {
+        title: 'Skuldersmärta',
+        description:
+          'Smärta vid arbete eller träning. Både diagnostik och behandling av senor/ledkapsel samt återgång till aktivitet.',
+        icon: 'flat-color-icons:document',
+      },
+      {
+        title: 'Ont i fötter och hälsenor',
+        description:
+          'Hälsporre, hälsenor och fotbesvär. Analys av belastning, behandling och stegvis återgång till rörelse.',
+        icon: 'flat-color-icons:advertising',
+      },
+      {
+        title: 'Ont i knän och vader',
+        description: 'Knäsmärta vid löpning eller vardag. Bedömning, behandling och anpassat rehabprogram.',
+        icon: 'flat-color-icons:currency-exchange',
+      },
+      {
+        title: 'Ont i höfterna',
+        description: 'Smärta i höft/ljumskar. Manuell behandling och individuella övningar för styrka och funktion.',
+        icon: 'flat-color-icons:voice-presentation',
+      },
+      {
+        title: 'Yrsel',
+        description:
+          'Bedömning av cervikogen yrsel och balansbesvär. Trygg guidning och anpassad rehabilitering.',
+        icon: 'flat-color-icons:business-contact',
+      },
+      {
+        title: 'Käk/huvudvärk',
+        description: 'Spänningar i käke och tinningar som ger huvudvärk. Behandling och egenvårdsråd för bestående resultat.',
+        icon: 'flat-color-icons:database',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- HighlightedPosts Widget ******* -->
+
+  <BlogLatestPosts
+    title="Tips and advice from the clinic"
+    information={`In the blog, I share practical advice, exercises and insights about common problems in back, neck, shoulders, knees and feet.
+                        My goal is to help you understand the causes of the pain and what you can do yourself between treatments.`}
+  >
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+  </Fragment></BlogLatestPosts>
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Frequently asked questions"
+    subtitle="Here I answer the most common questions from my patients in Enköping. If you have other questions, feel free to contact me directly."
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'How long does a treatment take?',
+        description:
+          'A first consultation usually takes 45-60 minutes where we do a thorough examination and discuss your problems. Subsequent treatments take 30-45 minutes. We take the time needed for you to get the best possible care.',
+      },
+      {
+        title: 'How much does a treatment cost?',
+        description:
+          'We follow the county tax of 200 kronor per treatment. Free card applies of course. We also offer package solutions for those who need several treatments. Contact me for more information about prices.',
+      },
+      {
+        title: 'Do I need a referral from a doctor?',
+        description:
+          'No, you can contact me directly for most problems within naprapathy and physiotherapy. If needed, I can refer you to a doctor or other specialist care.',
+      },
+      {
+        title: 'How many treatments are usually needed?',
+        description:
+          'It varies a lot depending on the type of problem and how long you have had them. Acute problems can often be relieved in 1-3 treatments, while chronic conditions may need 5-10 treatments or more. I always make an individual assessment.',
+      },
+      {
+        title: 'Can I continue training during treatment?',
+        description:
+          'In most cases, you can continue training, but I always advise on which exercises are suitable and which should be avoided temporarily. The goal is for you to be able to return to your normal activity level as soon as possible.',
+      },
+      {
+        title: 'What is the difference between naprapath and physiotherapist?',
+        description:
+          'As both a naprapath and licensed physiotherapist, I combine the best of both worlds. Naprapathy focuses on manual treatment of joints and muscles, while physiotherapy includes rehabilitation and preventive training.',
+      },
+    ]}
+  />
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book appointment now',
+        href: '#booking',
+        icon: 'tabler:calendar',
+      },
+      {
+        text: 'Contact me',
+        href: '/contact',
+        icon: 'tabler:phone',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to feel better?<br class="block sm:hidden" /><span class="sm:whitespace-nowrap"> Contact me today!</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Take the first step towards a pain-free life. I am here to help you regain your quality of life and
+      mobility.
+    </Fragment>
+  </CallToAction>
+</Layout>

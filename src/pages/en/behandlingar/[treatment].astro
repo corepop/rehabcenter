@@ -1,0 +1,23 @@
+---
+export interface Props {
+  treatment: string;
+  locale: string;
+}
+
+export async function getStaticPaths() {
+  const treatments = ['back-pain', 'neck-pain', 'shoulders', 'knees', 'feet', 'vertigo'];
+
+  return treatments.map(treatment => ({
+    params: { treatment },
+    props: { locale: 'en' }
+  }));
+}
+
+const { treatment, locale } = Astro.props as Props;
+---
+
+<div>
+  <h1>Treatment: {treatment}</h1>
+  <p>Locale: {locale}</p>
+  <!-- Treatment content will go here -->
+</div>
