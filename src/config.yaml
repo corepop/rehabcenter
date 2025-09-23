@@ -1,7 +1,7 @@
 site:
   name: Enköpings Rehabcenter
   site: 'https://corepop.github.io'
-  base: '/rehabcenter'
+  base: '/rehabcenter/'
   trailingSlash: true
 
   googleSiteVerificationId: false
@@ -22,10 +22,10 @@ metadata:
         width: 1200
         height: 628
     type: website
-  twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
-    cardType: summary_large_image
+#  twitter:
+#    handle: '@arthelokyo'
+#    site: '@arthelokyo'
+#    cardType: summary_large_image
 
 i18n:
   language: sv
