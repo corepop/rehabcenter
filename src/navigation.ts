@@ -12,15 +12,15 @@ export function getHeaderData(locale: string = 'sv') {
         links: [
           {
             text: t.nav.pricing,
-            href: getPermalink('/pricing'),
+            href: getPermalink('/prissättning'),
           },
           {
             text: t.nav.about,
-            href: getPermalink('/about'),
+            href: getPermalink('/om-oss'),
           },
           {
             text: t.nav.contact,
-            href: getPermalink('/contact'),
+            href: getPermalink('/kontakt'),
           },
           {
             text: t.nav.privacy,
@@ -87,6 +87,7 @@ export function getFooterData(locale: string = 'sv') {
       {
         title: t.footer.treatments,
         links: [
+          { text: t.treatments.eswt, href: getPermalink('/behandlingar/eswt') },
           { text: t.treatments.backPain, href: getPermalink('/behandlingar/ryggsmarta') },
           { text: t.treatments.neckPain, href: getPermalink('/behandlingar/nacksmarta') },
           { text: t.treatments.shoulders, href: getPermalink('/behandlingar/skuldror') },
@@ -98,10 +99,10 @@ export function getFooterData(locale: string = 'sv') {
       {
         title: t.footer.aboutClinic,
         links: [
-          { text: t.nav.about, href: getPermalink('/about') },
-          { text: t.nav.services, href: getPermalink('/services') },
-          { text: t.nav.pricing, href: getPermalink('/pricing') },
-          { text: t.nav.contact, href: getPermalink('/contact') },
+          { text: t.nav.about, href: getPermalink('/om-oss') },
+          { text: t.nav.services, href: getPermalink('/tjänster') },
+          { text: t.nav.pricing, href: getPermalink('/prissättning') },
+          { text: t.nav.contact, href: getPermalink('/kontakt') },
           { text: 'Tips & Råd', href: getBlogPermalink() },
         ],
       },
@@ -117,7 +118,7 @@ export function getFooterData(locale: string = 'sv') {
     ],
     secondaryLinks: [
       { text: t.nav.privacy, href: getPermalink('/privacy') },
-      { text: t.footer.contactUs, href: getPermalink('/contact') },
+      { text: t.footer.contactUs, href: getPermalink('/kontakt') },
     ],
     socialLinks: [
       { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },

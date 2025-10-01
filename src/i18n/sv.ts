@@ -16,7 +16,7 @@ export default {
     tagPage: 'Taggsida'
   },
   treatments: {
-    eswt: 'Stötvågsbehandling - ESWT',
+    eswt: 'Stötvågsbehandling',
     backPain: 'Ryggsmärta',
     neckPain: 'Nacksmärta',
     shoulders: 'Axlar & Skuldror',

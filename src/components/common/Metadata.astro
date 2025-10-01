@@ -7,6 +7,7 @@ import type { Props as AstroSeoProps } from '@astrolib/seo';
 import { SITE, METADATA, I18N } from 'astrowind:config';
 import type { MetaData } from '~/types';
 import { getCanonical } from '~/utils/permalinks';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import { adaptOpenGraphImages } from '~/utils/images';
 
@@ -63,6 +64,31 @@ const seoProps: AstroSeoProps = merge(
     twitter: twitter,
   }
 );
+
+// Generate hreflang links for multilingual SEO
+const currentLocale = Astro.currentLocale || 'sv';
+const locales = ['sv', 'en'];
+let cleanPathname = Astro.url.pathname;
+
+// Remove base path if present
+const basePath = SITE.base || '';
+if (basePath && cleanPathname.startsWith(basePath)) {
+  cleanPathname = cleanPathname.slice(basePath.length) || '/';
+}
+
+// Remove locale prefix for current non-default locale
+if (currentLocale !== 'sv' && cleanPathname.startsWith(`/${currentLocale}`)) {
+  cleanPathname = cleanPathname.slice(`/${currentLocale}`.length) || '/';
+}
+
+const additionalLinkTags = locales.map(locale => ({
+  rel: 'alternate',
+  hreflang: locale === 'sv' ? 'sv-SE' : 'en',
+  href: getCanonical(Astro.site?.origin + getRelativeLocaleUrl(locale, cleanPathname))
+}));
 ---
 
-<AstroSeo {...{ ...seoProps, openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site) }} />
+<AstroSeo {...merge(seoProps, {
+  additionalLinkTags,
+  openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site)
+})} />

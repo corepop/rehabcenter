@@ -15,8 +15,8 @@ if (basePath && cleanPathname.startsWith(basePath)) {
 }
 
 // Remove locale prefix if present (for non-default locales)
-if (currentLocale !== 'sv' && cleanPathname.startsWith(`/${currentLocale}`)) {
-  cleanPathname = cleanPathname.slice(`/${currentLocale}`.length) || '/';
+if (currentLocale && currentLocale !== 'sv') {
+  cleanPathname = cleanPathname.replace(new RegExp(`^/${currentLocale}(/?)`), (match, slash) => slash || '/');
 }
 
 export interface Props {
