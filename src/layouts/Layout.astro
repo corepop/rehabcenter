@@ -15,7 +15,7 @@ import sv from '../i18n/sv';
 import en from '../i18n/en';
 
 // View Transitions disabled
-import { ClientRouter } from 'astro:transitions';
+// import { ClientRouter } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '~/types';
 
@@ -40,7 +40,6 @@ const t = locale === 'en' ? en : sv;
     <SiteVerification />
     <Analytics />
 
-<ClientRouter fallback="swap" />
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
