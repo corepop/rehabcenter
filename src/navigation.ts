@@ -11,10 +11,6 @@ export function getHeaderData(locale: string = 'sv') {
         text: t.nav.home,
         links: [
           {
-            text: t.nav.pricing,
-            href: getPermalink('/prissättning'),
-          },
-          {
             text: t.nav.about,
             href: getPermalink('/om-oss'),
           },
@@ -24,7 +20,7 @@ export function getHeaderData(locale: string = 'sv') {
           },
           {
             text: t.nav.privacy,
-            href: getPermalink('/privacy'),
+            href: getPermalink('/integritet'),
           },
         ],
       },
@@ -100,7 +96,6 @@ export function getFooterData(locale: string = 'sv') {
         title: t.footer.aboutClinic,
         links: [
           { text: t.nav.about, href: getPermalink('/om-oss') },
-          { text: t.nav.pricing, href: getPermalink('/prissättning') },
           { text: t.nav.contact, href: getPermalink('/kontakt') },
           { text: 'Tips & Råd', href: getBlogPermalink() },
         ],
