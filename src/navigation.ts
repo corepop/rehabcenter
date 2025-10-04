@@ -100,25 +100,16 @@ export function getFooterData(locale: string = 'sv') {
         title: t.footer.aboutClinic,
         links: [
           { text: t.nav.about, href: getPermalink('/om-oss') },
-          { text: t.nav.services, href: getPermalink('/tjänster') },
           { text: t.nav.pricing, href: getPermalink('/prissättning') },
           { text: t.nav.contact, href: getPermalink('/kontakt') },
           { text: 'Tips & Råd', href: getBlogPermalink() },
         ],
       },
-      {
-        title: t.footer.information,
-        links: [
-          { text: t.nav.privacy, href: getPermalink('/privacy') },
-          { text: t.footer.terms, href: getPermalink('/terms') },
-          { text: t.footer.cookies, href: getPermalink('/cookies') },
-          { text: t.footer.gdpr, href: getPermalink('/privacy') },
-        ],
-      },
     ],
     secondaryLinks: [
-      { text: t.nav.privacy, href: getPermalink('/privacy') },
+      { text: t.nav.privacy, href: getPermalink('/integritet') },
       { text: t.footer.contactUs, href: getPermalink('/kontakt') },
+      { text: t.footer.cookies, href: getPermalink('/cookies') },
     ],
     socialLinks: [
       { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },

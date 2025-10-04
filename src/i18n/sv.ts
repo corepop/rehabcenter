@@ -31,7 +31,6 @@ export default {
     contactUs: 'Kontakta oss',
     terms: 'Användarvillkor',
     cookies: 'Cookies',
-    gdpr: 'GDPR & Dataskydd',
     copyright: 'Enköpings Rehabcenter ©'
   },
   hero: {
