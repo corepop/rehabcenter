@@ -18,6 +18,7 @@ metadata:
   openGraph:
     site_name: Enköpings Rehabcenter
     images:
+        # Byt ut mot en uppdaterad bild! 
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628

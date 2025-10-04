@@ -1,6 +1,9 @@
 ---
 export const prerender = true;
 
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
@@ -10,78 +13,160 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">Stötvågsbehandling</h1>
+  <!-- Hero Widget ******************* -->
 
-    <h2 class="text-2xl font-semibold mb-4">Hur fungerar stötvågsbehandling?</h2>
+  <Hero
+    tagline="Våra behandlingar"
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Stötvågsbehandling på Enköpings Rehabcenter',
+    }}
+  >
+    <Fragment slot="title">
+      Stötvågsbehandling <br />
+      <span class="text-accent dark:text-white">ESWT</span>
+    </Fragment>
 
-ESWT eller shockwave therapy är en behandlingsform framför allt riktad mot inflammationer och muskelsmärtor
+    <Fragment slot="subtitle">
+      Vi har över 10 års erfarenhet av stötvågsbehandling för inflammationer och muskelsmärtor. En effektiv behandlingsmetod baserad på evidens.
+    </Fragment>
+  </Hero>
 
-### Reparationsprocess genom impuls
-Som namnet antyder betyder stötvåg att man med hjälp av lufttryck skickar in en impuls i behandlingsområdet för att starta en reparationsprocess.
+  <!-- Content Widget - How ESWT works ************** -->
 
-### Ökad genomblödning
-Det som händer är att man får en ökad genomblödning i området som behandlas.
+  <Content
+    title="Hur fungerar stötvågsbehandling?"
+    subtitle="ESWT - Extracorporeal Shock Wave Therapy är en avancerad behandlingsmetod för inflammationer och muskelsmärtor"
+    items={[
+      {
+        title: 'Reparationsprocess genom impuls',
+        description: 'Med hjälp av lufttryck skickas en kontrollerad impuls in i behandlingsområdet för att starta läkning.',
+      },
+      {
+        title: 'Ökad genomblödning',
+        description: 'Behandlingen ökar blodcirkulationen i det behandlade området vilket främjar läkning.',
+      },
+      {
+        title: 'Smärtlindrande effekt',
+        description: 'Via hormoner (substans P) skapas en naturlig smärtlindring som hjälper till att minska obehag.',
+      },
+      {
+        title: 'Aktivering av stamceller',
+        description: 'Stamceller aktiveras vilket leder till nedbrytning av ärrvävnad och nybildning av frisk vävnad.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Stötvågsbehandling illustrerar tekniken',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        Vi har gedigen erfarenhet av diagnostik och rätt behandlingsteknik, vilket är avgörande för att uppnå snabba och effektiva resultat.
+      </p>
+    </Fragment>
 
-### Smärtlindrande effekt
-Via hormoner (substans P) fås en smärtlindrande effekt.
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
 
-### Aktivering av stamceller
-Det aktiverar även stamceller vilket framkallar läkning och leder till att ärrvävnad bryts ner, för att sedan kunna nybildas.
+  <!-- Content Widget - Treatment process ************** -->
 
-![Ultraljudsbehandling illustrerar tekniken](https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80)
+  <Content
+    isReversed
+    title="Hur går behandlingen till?"
+    subtitle="En noggrann process från undersökning till uppföljning för optimala resultat"
+    items={[
+      {
+        title: 'Noggrann undersökning',
+        description: 'Behandlingsserien börjar alltid med en grundlig undersökning där vi förklarar problemet och skapar en behandlingsplan.',
+      },
+      {
+        title: 'Behandlingstid 5-15 minuter',
+        description: 'Varje enskild behandling tar 5-15 minuter beroende på behandlingsområde.',
+      },
+      {
+        title: 'Behandlingsserie 3-4 gånger',
+        description: 'En komplett behandlingsserie består vanligtvis av 3-4 behandlingar med 5-10 dagars intervall.',
+      },
+      {
+        title: 'Utvärdering efter 4-6 veckor',
+        description: 'Efter behandlingsserien följer en paus på 4-6 veckor för att sedan utvärdera resultatet.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Stötvågsbehandling process och utrustning',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">
+        I många fall har besvären minskat betydligt under uppehållsperioden. Vid behov kan behandlingsserien upprepas.
+      </p>
+    </Fragment>
+  </Content>
 
-Som alltid är det viktigt med gedigen kunskap av diagnostik och behandlingsteknik vid användning av ESWT, för att få ett snabbt och effektivt resultat.
+  <!-- Content Widget - Treatment experience ************** -->
 
-## Hur går en behandling till?
+  <Content
+    title="Hur känns behandlingen?"
+    subtitle="En behandling som kräver noggrann kontroll för patientens komfort"
+    items={[
+      {
+        title: 'Under behandling',
+        description: 'Eftersom vi behandlar ett känsligt område kan det kännas obekvämt. Vi förklarar alltid att intensiteten kan justeras eller pausas när som helst.',
+      },
+      {
+        title: 'Efter behandling',
+        description: 'Det är normalt att uppleva tillfälligt obehag eller smärta efteråt, vilket indikerar att läkning pågår.',
+      },
+      {
+        title: 'Mediciner under behandling',
+        description: 'Antiinflammatoriska mediciner bör undvikas under behandlingsperioden, men smärtstillande läkemedel som Alvedon är tillåtna.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Patientupplevelse under stötvågsbehandling',
+    }}
+  />
 
-Det viktiga är att ställa rätt diagnos, och avgöra om stötvågsbehanding är lämpligt för besväret
+  <!-- Features2 Widget - Effectiveness ************** -->
 
-### Noggrann undersökning
-Behandlingsserien börjar alltid med en noggrann undersökning och förklaring av problemet och en behandlingsplan.
+  <Features2
+    title="Behandlingseffektivitet"
+    columns={1}
+    items={[
+      {
+        title: 'Individuella resultat',
+        description: 'Effekten varierar beroende på ålder, fysisk form och orsaken till inflammationen eller smärtan.',
+        icon: 'tabler:stethoscope',
+      },
+      {
+        title: 'Höga framgångstal',
+        description: 'Vid rätt förutsättningar blir exempelvis patienter med inflammation i knäskålssenan bra i upp till 95% av fallen.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
 
-### Behandlingstid
-En behandling tar 5-15 minuter.
+  <!-- Features2 Widget - Contact ************** -->
 
-### Behandlingsserie
-En behandlingsserie består av 3-4 behandlingar, med 5-10 dagars mellanrum.
-
-### Utvärdering
-Sedan följer en tid då man avstår från behandling, ofta mellan 4-6 veckor, för att sedan utvärdera resultatet.
-
-![Stötvågsbehandling process och utrustning](https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)
-
-Ofta har besvären minskat mycket under den tidsperioden. Om det behövs upprepar man behandlingsserien och utvärderingen.
-
-## Hur känns stötvågsbehandling?
-
-Eftersom man behandlar ett ömt område, gör det lite ont
-
-### Under behandling
-Vi är noggranna med att förklara att man när som helst kan minska intensiteten i behandlingen, eller ta en paus.
-
-### Efter behandling
-Efteråt kan man uppleva obehag eller lite tillfällig smärta. Det innebär enbart att det pågår en läkningsprocess.
-
-### Mediciner
-Viktigt är att man inte äter antiinflammatoriska mediciner under behandlingsperioden. Däremot är det givetvis fritt fram för alvedon eller andra smärtstillande mediciner.
-
-![Patientupplevelse under stötvågsbehandling](https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80)
-
-## Hur effektivt är stötvågsbehandling?
-
-### Individuella resultat
-Det varierar givetvis mycket beroende av ålder, vilken form man själv är i, och själva orsaken till varför man fått en inflammation eller ett smärtproblem.
-
-### Höga framgångstal
-Vid rätt förutsättningar brukar man säga att de med en inflammation i knäskålssenan blir bra i 95% av fallen.
-
-## Boka din behandling
-
-### Kontakta oss
-Ring eller skicka ett meddelande för att boka din första konsultation och få en personlig bedömning.
-
-### Första steget
-Vi börjar alltid med en noggrann undersökning för att säkerställa att ESWT är rätt behandling för dig.
-  </div>
+  <Features2
+    title="Boka stötvågsbehandling"
+    columns={2}
+    items={[
+      {
+        title: 'Första konsultation',
+        description: 'Ring eller skicka meddelande för att boka din första konsultation och få en personlig bedömning.',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Rätt diagnos först',
+        description: 'Vi börjar alltid med noggrann undersökning för att säkerställa att ESWT är rätt behandling för dig.',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  />
 </Layout>

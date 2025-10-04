@@ -2,7 +2,6 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Header from '~/components/widgets/Header.astro';
 
 const metadata = {
   title: 'Cookie-inställningar',
@@ -129,7 +128,7 @@ const metadata = {
       </div>
     </div>
   </WidgetWrapper>
-</Layout>
+</PageLayout>
 
 <script>
   class CookieSettingsManager {

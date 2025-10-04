@@ -1,5 +1,71 @@
 # Page Load Speed Optimization Guide for Enköpings Rehabcenter
 
+## Animation Control System 🎨
+
+This website includes several animation systems that can be controlled for performance or accessibility reasons.
+
+### Animation Types Currently Active:
+
+1. **Fade-in animations**: Elements animate in when scrolled into view (using `animate-fade` class)
+2. **View transitions**: Smooth page transitions between routes (Astro ClientRouter)
+3. **Intersection Observer animations**: Staggered element reveals on scroll
+4. **CSS transitions**: Hover and interaction transitions
+
+### Quick Disable/Enable Guide:
+
+#### To Disable Animations:
+
+1. **View Transitions** (`src/layouts/Layout.astro`):
+   ```typescript
+   // Remove or comment out:
+   import { ClientRouter } from 'astro:transitions';
+   <ClientRouter fallback="swap" />
+   ```
+
+2. **Tailwind Animations** (`tailwind.config.js`):
+   ```javascript
+   // Comment out the animation section:
+   animation: {
+     fade: 'fadeInUp 1s both',
+   },
+   ```
+
+3. **Intersection Observer Animations** (`src/components/common/BasicScripts.astro`):
+   ```javascript
+   // Comment out these lines:
+   // Observer.start();
+   // Inside astro:after-swap event: Observer.start();
+   ```
+
+#### To Enable Animations:
+
+Simply uncomment the relevant sections mentioned above in reverse order.
+
+### Global Animation Override (Optional):
+
+Add to `src/assets/styles/tailwind.css` for permanent disable:
+
+```css
+/* Disable all animations globally */
+*, *::before, *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+```
+
+### Animation Classes Used:
+
+- `intersect-once intersect-quarter`: Triggers animation once when 25% visible
+- `motion-safe:md:intersect:animate-fade`: Fade animation on medium+ screens
+- `motion-safe:md:opacity-0`: Initial opacity for fade effect
+
+### Accessibility Note:
+
+Animations respect `prefers-reduced-motion` media query automatically through Tailwind's `motion-safe:` prefix.
+
+---
+
 ## Current Performance Status ✅
 
 Your Astro website is already well-optimized with:
