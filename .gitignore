@@ -24,3 +24,5 @@ pnpm-lock.yaml
 # misc
 
 .clinerules
+# Local Netlify folder
+.netlify
