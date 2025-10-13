@@ -106,11 +106,6 @@ export function getFooterData(locale: string = 'sv') {
       { text: t.footer.contactUs, href: getPermalink('/kontakt') },
       { text: t.footer.cookies, href: getPermalink('/cookies') },
     ],
-    socialLinks: [
-      { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-      { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-      { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    ],
     footNote: `
       ${t.footer.copyright} ${new Date().getFullYear()}
       <br>
