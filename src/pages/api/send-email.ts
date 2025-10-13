@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-// Disable prerendering for API routes
+// Enable prerendering for API routes using Netlify Forms
 export const prerender = true;
 
 export const POST: APIRoute = async ({ request }) => {
@@ -40,47 +40,17 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Get EmailJS credentials from environment variables
-    const publicKey = import.meta.env.EMAILJS_PUBLIC_KEY;
-    const serviceId = import.meta.env.EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.EMAILJS_TEMPLATE_ID;
-
-    console.log('Environment variables check:', {
-      hasPublicKey: !!publicKey,
-      hasServiceId: !!serviceId,
-      hasTemplateId: !!templateId,
-      publicKey: publicKey ? '***' + publicKey.slice(-4) : 'undefined',
-      serviceId: serviceId ? '***' + serviceId.slice(-4) : 'undefined',
-      templateId: templateId ? '***' + templateId.slice(-4) : 'undefined'
+    // Log form submission for Netlify Forms - will be captured automatically
+    console.log('Contact form submission:', {
+      name,
+      email,
+      message,
+      timestamp: new Date().toISOString()
     });
 
-    if (!publicKey || !serviceId || !templateId) {
-      console.error('EmailJS credentials not configured');
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message: 'E-posttjänsten är inte korrekt konfigurerad.'
-        }),
-        {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    // For now, simulate email sending (replace with actual email service)
-    console.log('Email would be sent with:', {
-      to: 'your-email@example.com', // Replace with your actual email
-      from: email,
-      subject: `Contact form message from ${name}`,
-      body: message
-    });
-
-    // Simulate processing delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // TODO: Replace with actual email service implementation
-    // Options: Nodemailer, SendGrid, Mailgun, Resend, etc.
+    // For Netlify Forms, we don't need to manually send emails
+    // Netlify will handle form submissions automatically
+    // Just return success and let Netlify Forms process the data
 
     return new Response(
       JSON.stringify({
@@ -94,7 +64,7 @@ export const POST: APIRoute = async ({ request }) => {
     );
 
   } catch (error) {
-    console.error('Email sending error:', error);
+    console.error('Form submission error:', error);
     return new Response(
       JSON.stringify({
         success: false,

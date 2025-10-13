@@ -5,7 +5,7 @@ import Button from '~/components/ui/Button.astro';
 const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } = Astro.props;
 ---
 
-<form id="contact-form" class="contact-form">
+<form id="contact-form" class="contact-form" method="POST" data-netlify="true">
   {
     inputs &&
       inputs.map(
@@ -87,71 +87,4 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
     )
   }
 
-  <!-- Success/Error Messages -->
-  <div id="form-message" class="mt-4 hidden">
-    <p id="message-text" class="text-sm"></p>
-  </div>
 </form>
-
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const messageDiv = document.getElementById('form-message') as HTMLDivElement;
-  const messageText = document.getElementById('message-text') as HTMLParagraphElement;
-
-  if (form && messageDiv && messageText) {
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      // Basic validation
-      const inputs = form.querySelectorAll('input[required], textarea[required]');
-      let isValid = true;
-
-      inputs.forEach((input) => {
-        const inputElement = input as HTMLInputElement | HTMLTextAreaElement;
-        if (!inputElement.value.trim()) {
-          inputElement.classList.add('border-red-500');
-          isValid = false;
-        } else {
-          inputElement.classList.remove('border-red-500');
-        }
-      });
-
-      if (!isValid) {
-        showMessage('Please fill in all required fields.', 'error');
-        return;
-      }
-
-      // Send form data to secure API endpoint
-      try {
-        const formData = new FormData(form);
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          body: formData,
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          showMessage(result.message, 'success');
-          form.reset();
-        } else {
-          showMessage(result.message, 'error');
-        }
-      } catch (error) {
-        showMessage('Meddelandet kunde inte skickas. Var god försök igen.', 'error');
-        console.error('Form submission error:', error);
-      }
-    });
-
-    function showMessage(text: string, type: string) {
-      messageText.textContent = text;
-      messageDiv.className = `mt-4 ${type === 'success' ? 'text-green-600' : 'text-red-600'}`;
-      messageDiv.classList.remove('hidden');
-
-      // Hide message after 5 seconds
-      setTimeout(() => {
-        messageDiv.classList.add('hidden');
-      }, 5000);
-    }
-  }
-</script>
