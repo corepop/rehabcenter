@@ -1,8 +1,8 @@
 site:
   name: Enköpings Rehabcenter
-  site: 'https://corepop.github.io'
-  base: '/rehabcenter/'
-  trailingSlash: true
+  site: 'https://ephemeral-madeleine-5bd4e2.netlify.app'
+  base: '/'
+  trailingSlash: false
 
   googleSiteVerificationId: false
 
