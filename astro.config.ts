@@ -16,6 +16,9 @@ import astrowind from './vendor/integration';
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 
 
+import netlify from '@astrojs/netlify';
+
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = false;
@@ -97,4 +100,6 @@ export default defineConfig({
       },
     },
   },
+
+  adapter: netlify(),
 });
