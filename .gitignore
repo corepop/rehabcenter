@@ -26,3 +26,6 @@ pnpm-lock.yaml
 .clinerules
 # Local Netlify folder
 .netlify
+
+# Astro compress cache
+.astro-compress-cache/
