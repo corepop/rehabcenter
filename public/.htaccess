@@ -1,0 +1,19 @@
+# WordPress headless CMS configuration
+# Allow WordPress functionality but hide public site
+
+# Block only the main WordPress site files that would expose the public site
+RedirectMatch 404 ^/blogg/wordpress/index\.php$
+RedirectMatch 404 ^/blogg/wordpress/$  # Block root directory listing
+
+# Allow all WordPress core functionality:
+# - wp-admin/ (admin dashboard)
+# - wp-login.php (login page)
+# - wp-json/ (REST API)
+# - wp-includes/ (core files)
+# - wp-content/ (themes, plugins, uploads)
+# - All other WordPress functionality
+
+# Alternative approach using mod_rewrite (uncomment if RedirectMatch doesn't work)
+# RewriteEngine On
+# RewriteRule ^blogg/wordpress/index\.php$ /404 [R=404,L]
+# RewriteRule ^blogg/wordpress/$ /404 [R=404,L]

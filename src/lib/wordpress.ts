@@ -130,7 +130,7 @@ export function convertWordPressPostToPost(wpPost: WordPressPost) {
 
   // Get featured image
   const featuredMedia = embedded['wp:featuredmedia']?.[0];
-  const image = featuredMedia?.source_url || '/images/default.png';
+  const image = featuredMedia?.source_url || '~/assets/images/default.png';
 
   // Get author
   const author = embedded.author?.[0];

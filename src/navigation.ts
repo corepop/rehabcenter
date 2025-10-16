@@ -27,7 +27,7 @@ export function getHeaderData(locale: string = 'sv') {
       },
       {
         text: t.nav.treatments,
-        href: getPermalink('/tjänster'),
+        href: getPermalink('/tjanster'),
         links: [
           {
             text: t.treatments.eswt,

@@ -1,6 +1,6 @@
 site:
   name: Enköpings Rehabcenter
-  site: 'https://ephemeral-madeleine-5bd4e2.netlify.app'
+  site: 'https://rygg.nu'
   base: '/'
   trailingSlash: false
   googleSiteVerificationId: false
@@ -44,7 +44,7 @@ apps:
 
     list:
       isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      pathname: 'blogg' # Blog main path, you can change this to "articles" (/articles)
       robots:
         index: true
 
