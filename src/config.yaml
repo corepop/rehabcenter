@@ -3,7 +3,6 @@ site:
   site: 'https://ephemeral-madeleine-5bd4e2.netlify.app'
   base: '/'
   trailingSlash: false
-
   googleSiteVerificationId: false
 
 # Default SEO metadata

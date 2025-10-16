@@ -9,6 +9,7 @@ export function getHeaderData(locale: string = 'sv') {
     links: [
       {
         text: t.nav.home,
+        href: getPermalink('/'),
         links: [
           {
             text: t.nav.about,
@@ -26,6 +27,7 @@ export function getHeaderData(locale: string = 'sv') {
       },
       {
         text: t.nav.treatments,
+        href: getPermalink('/tjänster'),
         links: [
           {
             text: t.treatments.eswt,
@@ -59,16 +61,7 @@ export function getHeaderData(locale: string = 'sv') {
       },
       {
         text: t.nav.blog,
-        links: [
-          {
-            text: t.nav.blogList,
-            href: getBlogPermalink(),
-          },
-          {
-            text: t.nav.tagPage,
-            href: getPermalink('astro', 'tag'),
-          },
-        ],
+        href: getBlogPermalink(),
       },
     ],
     actions: [{ text: t.nav.bookAppointment, href: 'https://boka.antwork.se/238', target: '_blank' }],
@@ -106,6 +99,7 @@ export function getFooterData(locale: string = 'sv') {
       { text: t.footer.contactUs, href: getPermalink('/kontakt') },
       { text: t.footer.cookies, href: getPermalink('/cookies') },
     ],
+    address: 'Linbanegatan 12, 745 34 Enköping',
     footNote: `
       ${t.footer.copyright} ${new Date().getFullYear()}
       <br>

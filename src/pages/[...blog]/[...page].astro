@@ -7,9 +7,7 @@ import Headline from '~/components/blog/Headline.astro';
 import Pagination from '~/components/blog/Pagination.astro';
 // import PostTags from "~/components/blog/Tags.astro";
 
-import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
-
-export const prerender = true;
+import { blogListRobots, getStaticPathsBlogList } from '~/lib/blog-wordpress';
 
 export const getStaticPaths = (async ({ paginate }) => {
   return await getStaticPathsBlogList({ paginate });
@@ -38,7 +36,7 @@ const metadata = {
 <Layout metadata={metadata}>
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
     <Headline
-      subtitle="A statically generated blog example with news, tutorials, resources and other interesting content related to AstroWind"
+      subtitle="I bloggen delar jag praktiska råd, övningar och fördjupningar om vanliga besvär i rygg, nacke, axlar, knän och fötter."
     >
       Blogg
     </Headline>

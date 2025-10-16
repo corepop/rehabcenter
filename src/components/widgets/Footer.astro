@@ -21,9 +21,10 @@ export interface Props {
   socialLinks: Array<Link>;
   footNote?: string;
   theme?: string;
+  address?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light', address = '' } = Astro.props;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
@@ -50,6 +51,13 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
             ))
           }
         </div>
+        {
+          address && (
+            <div class="text-sm text-muted mt-2">
+              <span class="text-muted dark:text-gray-400">{address}</span>
+            </div>
+          )
+        }
       </div>
       {
         links.map(({ title, links }) => (
