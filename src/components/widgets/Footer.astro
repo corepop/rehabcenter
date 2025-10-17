@@ -54,7 +54,15 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         {
           address && (
             <div class="text-sm text-muted mt-2">
-              <span class="text-muted dark:text-gray-400">{address}</span>
+              <a
+                class="text-muted dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:underline transition duration-150 ease-in-out"
+                href={`https://maps.app.goo.gl/ryx1XEgbMonUbFgH6`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Få vägbeskrivning till Enköpings Rehabcenter`}
+              >
+                {address}
+              </a>
             </div>
           )
         }
