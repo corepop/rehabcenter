@@ -10,6 +10,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "build:wordpress": "npm run build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "npm run check:astro && npm run check:eslint && npm run check:prettier",
@@ -29,6 +30,7 @@
     "@fontsource-variable/inter": "^5.2.6",
     "astro": "^5.14.1",
     "astro-icon": "^1.1.5",
+    "gray-matter": "^4.0.3",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
     "unpic": "^4.1.3"

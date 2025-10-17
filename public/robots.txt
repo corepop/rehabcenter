@@ -1,4 +1,5 @@
 User-agent: *
-Disallow: /blogg/wordpress/
-Disallow: /blogg/wordpress/wp-admin/
-Disallow: /blogg/wordpress/wp-login.php
+Disallow: /
+Disallow: /wordpress/
+Disallow: /wordpress/wp-admin/
+Disallow: /wordpress/wp-login.php

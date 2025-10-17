@@ -1,0 +1,34 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import BlogList from '~/components/blog/List.astro';
+import Hero from '~/components/widgets/Hero.astro';
+
+import { blogListRobots, fetchPosts } from '~/lib/blog-wordpress';
+
+export const prerender = true; // Static generation with WordPress content
+
+// Fetch fresh posts from WordPress
+const allPosts = await fetchPosts();
+
+const metadata = {
+  title: 'Blogg',
+  description: 'I bloggen delar jag praktiska råd, övningar och fördjupningar om vanliga besvär i rygg, nacke, axlar, knän och fötter.',
+  robots: {
+    index: blogListRobots?.index,
+    follow: blogListRobots?.follow,
+  },
+  openGraph: {
+    type: 'blog',
+  },
+};
+---
+
+<Layout metadata={metadata}>
+    <Hero
+      title="Blogg"
+      subtitle="I bloggen delar jag praktiska råd, övningar och fördjupningar om vanliga besvär i rygg, nacke, axlar, knän och fötter."
+    />
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <BlogList posts={allPosts} />
+  </section>
+</Layout>

@@ -1,0 +1,26 @@
+---
+export const prerender = true;
+
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Boka tid - Enköpings Rehabcenter',
+  description: 'Boka tid enkelt och snabbt online hos Enköpings Rehabcenter. Välj den tid som passar dig bäst.',
+};
+---
+
+<Layout metadata={metadata}>
+  <script>
+    window.location.href = 'https://boka.antwork.se/238';
+  </script>
+
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="text-center">
+      <h1 class="text-2xl font-bold mb-4">Omdirigerar till bokningssystem...</h1>
+      <p class="text-gray-600">Om du inte automatiskt dirigeras vidare, klicka på länken nedan.</p>
+      <a href="https://boka.antwork.se/238" class="text-blue-600 underline mt-4 inline-block">
+        Gå till bokningssystem (https://boka.antwork.se/238)
+      </a>
+    </div>
+  </div>
+</Layout>

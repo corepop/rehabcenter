@@ -64,7 +64,7 @@ export function getHeaderData(locale: string = 'sv') {
         href: getBlogPermalink(),
       },
     ],
-    actions: [{ text: t.nav.bookAppointment, href: 'https://boka.antwork.se/238', target: '_blank' }],
+    actions: [{ text: t.nav.bookAppointment, href: getPermalink('/boka-tid') }],
   };
 }
 

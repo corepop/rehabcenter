@@ -1,7 +1,7 @@
 import type { PaginateFunction } from 'astro';
 import type { Post } from '~/types';
 import { APP_BLOG } from 'astrowind:config';
-import { trimSlash, BLOG_BASE, POST_PERMALINK_PATTERN, CATEGORY_BASE, TAG_BASE } from '~/utils/permalinks';
+import { trimSlash, BLOG_BASE, POST_PERMALINK_PATTERN, CATEGORY_BASE } from '~/utils/permalinks';
 import { fetchWordPressPosts, convertWordPressPostToPost } from './wordpress';
 
 const generatePermalink = async ({
@@ -128,7 +128,19 @@ export const findLatestPosts = async ({ count }: { count?: number }): Promise<Ar
 /** */
 export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateFunction }) => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
-  return paginate(await fetchPosts(), {
+
+  const posts = await fetchPosts();
+
+  return paginate(posts, {
+    pageSize: blogPostsPerPage,
+  });
+};
+
+/** */
+export const getStaticPathsBlogListDynamic = async ({ paginate }: { paginate: PaginateFunction }) => {
+  if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
+  const posts = await fetchPosts();
+  return paginate(posts, {
     params: { blog: BLOG_BASE || undefined },
     pageSize: blogPostsPerPage,
   });
@@ -139,7 +151,7 @@ export const getStaticPathsBlogPost = async () => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
   return (await fetchPosts()).flatMap((post) => ({
     params: {
-      blog: post.permalink,
+      slug: post.slug,
     },
     props: { post },
   }));
@@ -164,32 +176,6 @@ export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: Pagin
         params: { category: categorySlug, blog: CATEGORY_BASE || undefined },
         pageSize: blogPostsPerPage,
         props: { category: categories[categorySlug] },
-      }
-    )
-  );
-};
-
-/** */
-export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFunction }) => {
-  if (!isBlogEnabled || !isBlogTagRouteEnabled) return [];
-
-  const posts = await fetchPosts();
-  const tags = {};
-  posts.map((post) => {
-    if (Array.isArray(post.tags)) {
-      post.tags.map((tag) => {
-        tags[tag?.slug] = tag;
-      });
-    }
-  });
-
-  return Array.from(Object.keys(tags)).flatMap((tagSlug) =>
-    paginate(
-      posts.filter((post) => Array.isArray(post.tags) && post.tags.find((elem) => elem.slug === tagSlug)),
-      {
-        params: { tag: tagSlug, blog: TAG_BASE || undefined },
-        pageSize: blogPostsPerPage,
-        props: { tag: tags[tagSlug] },
       }
     )
   );
