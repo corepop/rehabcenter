@@ -1,0 +1,83 @@
+---
+import { fetchWordPressPosts, convertWordPressPostToPost } from '~/lib/wordpress';
+import Grid from '~/components/blog/Grid.astro';
+import Headline from '~/components/blog/Headline.astro';
+
+// This function from blog-wordpress.ts properly generates permalinks using POST_PERMALINK_PATTERN
+const generatePermalink = async ({
+  slug,
+  publishDate,
+  category,
+}: {
+  slug: string;
+  publishDate: Date;
+  category: string | undefined;
+}) => {
+  const { POST_PERMALINK_PATTERN, trimSlash } = await import('~/utils/permalinks');
+
+  const year = String(publishDate.getFullYear()).padStart(4, '0');
+  const month = String(publishDate.getMonth() + 1).padStart(2, '0');
+  const day = String(publishDate.getDate()).padStart(2, '0');
+  const hour = String(publishDate.getHours()).padStart(2, '0');
+  const minute = String(publishDate.getMinutes()).padStart(2, '0');
+  const second = String(publishDate.getSeconds()).padStart(2, '0');
+
+  const permalink = POST_PERMALINK_PATTERN.replace('%slug%', slug)
+    .replace('%category%', category || '')
+    .replace('%year%', year)
+    .replace('%month%', month)
+    .replace('%day%', day)
+    .replace('%hour%', hour)
+    .replace('%minute%', minute)
+    .replace('%second%', second);
+
+  return permalink
+    .split('/')
+    .map((el) => trimSlash(el))
+    .filter((el) => !!el)
+    .join('/');
+};
+
+// Fetch posts server-side
+const wpPosts = await fetchWordPressPosts({
+  per_page: 12,
+});
+
+// Convert WordPress posts to our Post type with proper permalinks
+const posts = await Promise.all(
+  wpPosts.map(async (wpPost) => {
+    const post = convertWordPressPostToPost(wpPost);
+    const permalink = await generatePermalink({
+      slug: post.slug,
+      publishDate: post.publishDate,
+      category: post.category?.slug,
+    });
+    return {
+      ...post,
+      permalink,
+    };
+  })
+);
+
+// Filter out draft posts
+const publishedPosts = posts.filter((post) => !post.draft);
+---
+
+<section class="px-6 py-12 sm:py-16 lg:py-20">
+  <div class="mx-auto max-w-7xl">
+    <Headline
+      title="Blogg"
+      subtitle="Praktiska råd, övningar och fördjupningar om vanliga besvär i rygg, nacke, axlar, knän och fötter."
+    />
+
+    {
+      publishedPosts.length > 0 ? (
+        <Grid posts={publishedPosts} />
+      ) : (
+        <div class="text-center py-8">
+          <p class="text-muted dark:text-slate-400 max-w-2xl mx-auto">Inga blogginlägg tillgängliga just nu.</p>
+        </div>
+      )
+    }
+  </div>
+</section>

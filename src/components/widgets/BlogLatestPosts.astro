@@ -4,9 +4,9 @@ import { APP_BLOG } from 'astrowind:config';
 import Grid from '~/components/blog/Grid.astro';
 
 import { getBlogPermalink } from '~/utils/permalinks';
-import { findLatestPosts } from '~/lib/blog-wordpress';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { Widget } from '~/types';
+import { fetchWordPressPosts, convertWordPressPostToPost } from '~/lib/wordpress';
 import Button from '~/components/ui/Button.astro';
 
 export interface Props extends Widget {
@@ -22,7 +22,7 @@ const {
   linkText = 'Visa alla poster',
   linkUrl = getBlogPermalink(),
   information = await Astro.slots.render('information'),
-  count = 4,
+  count = 6,
 
   id,
   isDark = false,
@@ -30,7 +30,69 @@ const {
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 
-const posts = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
+// This function from blog-wordpress.ts properly generates permalinks using POST_PERMALINK_PATTERN
+const generatePermalink = async ({
+  slug,
+  publishDate,
+  category,
+}: {
+  slug: string;
+  publishDate: Date;
+  category: string | undefined;
+}) => {
+  const { POST_PERMALINK_PATTERN, trimSlash } = await import('~/utils/permalinks');
+
+  const year = String(publishDate.getFullYear()).padStart(4, '0');
+  const month = String(publishDate.getMonth() + 1).padStart(2, '0');
+  const day = String(publishDate.getDate()).padStart(2, '0');
+  const hour = String(publishDate.getHours()).padStart(2, '0');
+  const minute = String(publishDate.getMinutes()).padStart(2, '0');
+  const second = String(publishDate.getSeconds()).padStart(2, '0');
+
+  const permalink = POST_PERMALINK_PATTERN.replace('%slug%', slug)
+    .replace('%category%', category || '')
+    .replace('%year%', year)
+    .replace('%month%', month)
+    .replace('%day%', day)
+    .replace('%hour%', hour)
+    .replace('%minute%', minute)
+    .replace('%second%', second);
+
+  return permalink
+    .split('/')
+    .map((el) => trimSlash(el))
+    .filter((el) => !!el)
+    .join('/');
+};
+
+// Fetch latest posts server-side using WordPress API
+let posts: any[] = [];
+let wordpressAvailable = true;
+
+try {
+  const wpPosts = await fetchWordPressPosts({
+    per_page: count
+  });
+
+  posts = await Promise.all(
+    wpPosts.map(async (wpPost) => {
+      const post = convertWordPressPostToPost(wpPost);
+      const permalink = await generatePermalink({
+        slug: post.slug,
+        publishDate: post.publishDate,
+        category: post.category?.slug,
+      });
+      return {
+        ...post,
+        permalink,
+      };
+    })
+  );
+} catch (error) {
+  console.error('WordPress API failed for BlogLatestPosts:', error);
+  wordpressAvailable = false;
+  // posts remains empty array - will show fallback UI
+}
 ---
 
 {
@@ -55,7 +117,26 @@ const posts = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
         {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />}
       </div>
 
-      <Grid posts={posts} />
+      {wordpressAvailable && posts.length > 0 ? (
+        <Grid posts={posts} />
+      ) : (
+        <div class="text-center py-12 bg-blue-50 rounded-lg border border-blue-200">
+          <div class="max-w-md mx-auto">
+            <div class="text-blue-500 mb-4">
+              <svg class="w-12 h-12 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 012 0v4a1 1 0 11-2 0V9z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-blue-900 mb-2">Blogginlägg laddas snart</h3>
+            <p class="text-blue-700 text-sm mb-4">
+              Vårt blogghanteringssystem håller på att konfigureras. Blogginlägg kommer att visas här när systemet är aktivt.
+            </p>
+            <p class="text-xs text-blue-600">
+              För att hantera blogginlägg, använd WordPress-admin i ert befintliga system.
+            </p>
+          </div>
+        </div>
+      )}
     </WidgetWrapper>
   ) : (
     <Fragment />

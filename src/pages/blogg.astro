@@ -1,21 +1,14 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import BlogList from '~/components/blog/List.astro';
-import Hero from '~/components/widgets/Hero.astro';
-
-import { blogListRobots, fetchPosts } from '~/lib/blog-wordpress';
-
-export const prerender = false; // Server-side rendering for dynamic WordPress content
-
-// Fetch fresh posts from WordPress
-const allPosts = await fetchPosts();
+import WordPressClient from '~/components/blog/WordPressClient.astro';
 
 const metadata = {
   title: 'Blogg',
-  description: 'I bloggen delar jag praktiska råd, övningar och fördjupningar om vanliga besvär i rygg, nacke, axlar, knän och fötter.',
+  description:
+    'I bloggen delar jag praktiska råd, övningar och fördjupningar om vanliga besvär i rygg, nacke, axlar, knän och fötter.',
   robots: {
-    index: blogListRobots?.index,
-    follow: blogListRobots?.follow,
+    index: true,
+    follow: true,
   },
   openGraph: {
     type: 'blog',
@@ -24,11 +17,5 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-    <Hero
-      title="Blogg"
-      subtitle="I bloggen delar jag praktiska råd, övningar och fördjupningar om vanliga besvär i rygg, nacke, axlar, knän och fötter."
-    />
-  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <BlogList posts={allPosts} />
-  </section>
+  <WordPressClient postsLimit={12} />
 </Layout>

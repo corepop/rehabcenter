@@ -13,6 +13,7 @@ Technical guidelines for Astro development on the Enköpings Rehabcenter website
 - Always follow Tailwind CSS conventions for styling (use utility-first approach, responsive prefixes, and consistent class naming)
 - Maintain consistent styling with Tailwind CSS classes
 - Ensure components are responsive and support dark mode
+- Styling goes in components, not in sites
 
 ## Performance optimization
 - Implement lazy loading for heavy components when needed

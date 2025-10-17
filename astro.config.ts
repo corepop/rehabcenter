@@ -9,13 +9,12 @@ import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
+import react from '@astrojs/react';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
-
-import netlify from '@astrojs/netlify';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -24,8 +23,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
-  output: 'server',
-  adapter: netlify(),
+  output: 'static',
 
   // Language config
   i18n: {
@@ -36,12 +34,17 @@ export default defineConfig({
     },
   },
 
+
+
   integrations: [
+    react(),
     tailwind({
       applyBaseStyles: false,
     }),
     sitemap(),
-    mdx(),
+    mdx({
+      extendMarkdownConfig: true,
+    }),
     icon({
       include: {
         tabler: ['*'],
@@ -81,9 +84,7 @@ export default defineConfig({
     }),
   ],
 
-  image: {
-    domains: ['cdn.pixabay.com'],
-  },
+
 
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],

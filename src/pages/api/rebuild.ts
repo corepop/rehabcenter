@@ -10,28 +10,34 @@ export const post: APIRoute = async ({ request }) => {
   }
 
   try {
-    // For manual deployments, just log the rebuild request
     console.log('🔄 WordPress rebuild requested at:', new Date().toISOString());
 
-    // You can add custom logic here, such as:
-    // - Sending notifications
-    // - Triggering local build scripts
-    // - Updating timestamps
+    // For GitHub Pages deployment, we don't need to trigger anything
+    // The workflow will run automatically on webhook or push to main
+    console.log('🔄 WordPress rebuild requested at:', new Date().toISOString());
 
     return new Response(JSON.stringify({
       success: true,
-      message: 'Rebuild request received. Run "npm run build" to update content.',
-      timestamp: new Date().toISOString()
+      message: 'Rebuild request received. Deploy via GitHub Actions or push to main branch.',
+      timestamp: new Date().toISOString(),
+      deployment: {
+        method: 'github_pages',
+        trigger: 'manual_or_push_required',
+        note: 'Push to main branch or trigger workflow manually in GitHub Actions'
+      }
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
 
   } catch (error) {
-    console.error('Rebuild request failed:', error);
+    console.error('💥 Rebuild request failed:', error);
+
     return new Response(JSON.stringify({
       success: false,
-      error: 'Rebuild request failed'
+      error: 'Rebuild request failed',
+      message: error.message,
+      timestamp: new Date().toISOString()
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }

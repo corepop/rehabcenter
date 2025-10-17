@@ -4,7 +4,15 @@ import { SITE, METADATA, APP_BLOG } from 'astrowind:config';
 import { fetchPosts } from '~/lib/blog-wordpress';
 import { getPermalink } from '~/utils/permalinks';
 
-const posts = await fetchPosts();
+// Try to fetch posts, but don't fail if WordPress API is unavailable
+let posts: Post[] = [];
+try {
+  posts = await fetchPosts();
+} catch (error) {
+  // Log error but continue with empty posts array
+  console.warn(`RSS generation: WordPress API failed (${error?.message || 'unknown error'}), generating empty feed`);
+  posts = [];
+}
 
 export async function GET(context: { url: URL }) {
   const { url } = context;
