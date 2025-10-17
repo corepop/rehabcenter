@@ -24,6 +24,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
+  base: process.env.GITHUB_PAGES ? '/rehabcenter' : '/',
 
   // Language config
   i18n: {
@@ -41,7 +42,11 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
     mdx({
       extendMarkdownConfig: true,
     }),

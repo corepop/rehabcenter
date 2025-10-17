@@ -1,0 +1,2 @@
+# This file prevents GitHub Pages from trying to process the site with Jekyll
+# which can break Astro sites with _astro folder and static assets
