@@ -5,7 +5,7 @@ import Hero from '~/components/widgets/Hero.astro';
 
 import { blogListRobots, fetchPosts } from '~/lib/blog-wordpress';
 
-export const prerender = true; // Static generation with WordPress content
+export const prerender = false; // Server-side rendering for dynamic WordPress content
 
 // Fetch fresh posts from WordPress
 const allPosts = await fetchPosts();
