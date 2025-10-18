@@ -32,8 +32,15 @@ const t = locale === 'en' ? en : sv;
 <!doctype html>
 <html lang={locale} dir={textDirection} class="2xl:text-[20px]">
   <head>
+    <!-- Temporarily disabled SEO -->
     <meta name="robots" content="noindex, nofollow" />
     <title>{t.site.title}</title>
+
+    <!-- Resource Hints for Performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
     <CommonMeta />
     <Favicons />
     <CustomStyles />

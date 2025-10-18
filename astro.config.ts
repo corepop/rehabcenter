@@ -10,6 +10,7 @@ import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
 import react from '@astrojs/react';
+import criticalCss from 'astro-critical-css';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
@@ -18,13 +19,12 @@ import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehype
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const hasExternalScripts = false;
+const hasExternalScripts = true;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
   output: 'static',
-  base: process.env.GITHUB_PAGES ? '/rehabcenter' : '/',
 
   // Language config
   i18n: {
@@ -86,6 +86,11 @@ export default defineConfig({
 
     astrowind({
       config: './src/config.yaml',
+    }),
+
+    criticalCss({
+      width: 1200,
+      height: 800,
     }),
   ],
 
