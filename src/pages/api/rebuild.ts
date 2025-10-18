@@ -12,18 +12,70 @@ export const post: APIRoute = async ({ request }) => {
   try {
     console.log('🔄 WordPress rebuild requested at:', new Date().toISOString());
 
-    // For GitHub Pages deployment, we don't need to trigger anything
-    // The workflow will run automatically on webhook or push to main
-    console.log('🔄 WordPress rebuild requested at:', new Date().toISOString());
+    // For Cloudflare Pages, we have two options:
+    // 1. Trigger a rebuild via Cloudflare API (requires API token)
+    // 2. Simply acknowledge and let git push handle deployment
+
+    const CLOUDFLARE_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
+    const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
+    const CLOUDFLARE_PROJECT_NAME = process.env.CLOUDFLARE_PROJECT_NAME;
+
+    // Option 1: Direct Cloudflare Pages API trigger (if tokens available)
+    if (CLOUDFLARE_API_TOKEN && CLOUDFLARE_ACCOUNT_ID && CLOUDFLARE_PROJECT_NAME) {
+      try {
+        const response = await fetch(
+          `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/${CLOUDFLARE_PROJECT_NAME}/deployments`,
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${CLOUDFLARE_API_TOKEN}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              branch: 'main'
+            })
+          }
+        );
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log('✅ Cloudflare Pages deployment triggered successfully');
+
+          return new Response(JSON.stringify({
+            success: true,
+            message: 'Rebuild request received and Cloudflare Pages deployment triggered.',
+            timestamp: new Date().toISOString(),
+            deployment: {
+              method: 'cloudflare_pages',
+              trigger: 'api_automatic',
+              deployment_id: result.result?.id,
+              status: 'Deployment initiated'
+            }
+          }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' }
+          });
+        } else {
+          const errorText = await response.text();
+          console.error('❌ Cloudflare Pages API trigger failed:', response.status, errorText);
+        }
+      } catch (apiError) {
+        console.error('❌ Cloudflare Pages API error:', apiError);
+      }
+    }
+
+    // Option 2: Fallback - acknowledge webhook (git push will trigger build)
+    console.log('📝 Webhook received - Cloudflare Pages will build on next git push');
 
     return new Response(JSON.stringify({
       success: true,
-      message: 'Rebuild request received. Deploy via GitHub Actions or push to main branch.',
+      message: 'Rebuild request received. Cloudflare Pages will build on next git push.',
       timestamp: new Date().toISOString(),
       deployment: {
-        method: 'github_pages',
-        trigger: 'manual_or_push_required',
-        note: 'Push to main branch or trigger workflow manually in GitHub Actions'
+        method: 'cloudflare_pages',
+        trigger: 'git_push_required',
+        note: 'Push to main branch or trigger rebuild manually in Cloudflare Pages dashboard',
+        project_url: `https://dash.cloudflare.com/pages/${CLOUDFLARE_ACCOUNT_ID}/${CLOUDFLARE_PROJECT_NAME}`
       }
     }), {
       status: 200,
