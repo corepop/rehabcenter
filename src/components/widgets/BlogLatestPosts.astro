@@ -6,7 +6,6 @@ import Grid from '~/components/blog/Grid.astro';
 import { getBlogPermalink } from '~/utils/permalinks';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { Widget } from '~/types';
-import { fetchWordPressPosts, convertWordPressPostToPost } from '~/lib/wordpress';
 import Button from '~/components/ui/Button.astro';
 
 export interface Props extends Widget {
@@ -65,23 +64,38 @@ const generatePermalink = async ({
     .join('/');
 };
 
-// Fetch latest posts server-side using WordPress API
+// Fetch latest posts server-side using WordPress REST API directly
 let posts: any[] = [];
 let wordpressAvailable = true;
 
 try {
-  const wpPosts = await fetchWordPressPosts({
-    per_page: count
-  });
+  // Direct REST API call to WordPress
+  const WORDPRESS_API_URL = 'https://blogg.rygg.nu/wp-json/wp/v2/posts';
+  const response = await fetch(`${WORDPRESS_API_URL}?per_page=${count}&_embed`);
+  const wpPosts = await response.json();
 
   posts = await Promise.all(
-    wpPosts.map(async (wpPost) => {
-      const post = convertWordPressPostToPost(wpPost);
+    wpPosts.map(async (wpPost: any) => {
+      // Convert WordPress post format to our post format
+      const post = {
+        slug: wpPost.slug,
+        publishDate: new Date(wpPost.date),
+        title: wpPost.title.rendered,
+        excerpt: wpPost.excerpt.rendered.replace(/<[^>]*>/g, '').trim(),
+        image: wpPost._embedded?.['wp:featuredmedia']?.[0]?.source_url,
+        category: {
+          slug: wpPost._embedded?.['wp:term']?.[0]?.[0]?.slug,
+          title: wpPost._embedded?.['wp:term']?.[0]?.[0]?.name,
+        },
+        author: wpPost._embedded?.['wp:term']?.[0]?.[0]?.name || 'Johny Åhman',
+      };
+
       const permalink = await generatePermalink({
         slug: post.slug,
         publishDate: post.publishDate,
         category: post.category?.slug,
       });
+
       return {
         ...post,
         permalink,
@@ -89,7 +103,7 @@ try {
     })
   );
 } catch (error) {
-  console.error('WordPress API failed for BlogLatestPosts:', error);
+  console.error('WordPress REST API failed for BlogLatestPosts:', error);
   wordpressAvailable = false;
   // posts remains empty array - will show fallback UI
 }

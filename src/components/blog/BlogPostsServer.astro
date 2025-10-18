@@ -1,5 +1,4 @@
 ---
-import { fetchWordPressPosts, convertWordPressPostToPost } from '~/lib/wordpress';
 import Grid from '~/components/blog/Grid.astro';
 import Headline from '~/components/blog/Headline.astro';
 
@@ -38,20 +37,35 @@ const generatePermalink = async ({
     .join('/');
 };
 
-// Fetch posts server-side
-const wpPosts = await fetchWordPressPosts({
-  per_page: 12,
-});
+// Fetch posts server-side using REST API directly
+const WORDPRESS_API_URL = 'https://blogg.rygg.nu/wp-json/wp/v2/posts';
+const response = await fetch(`${WORDPRESS_API_URL}?per_page=12&_embed`);
+const wpPosts = await response.json();
 
 // Convert WordPress posts to our Post type with proper permalinks
 const posts = await Promise.all(
-  wpPosts.map(async (wpPost) => {
-    const post = convertWordPressPostToPost(wpPost);
+  wpPosts.map(async (wpPost: any) => {
+    const post = {
+      slug: wpPost.slug,
+      publishDate: new Date(wpPost.date),
+      title: wpPost.title.rendered,
+      excerpt: wpPost.excerpt.rendered.replace(/<[^>]*>/g, '').trim(),
+      image: wpPost._embedded?.['wp:featuredmedia']?.[0]?.source_url,
+      category: {
+        slug: wpPost._embedded?.['wp:term']?.[0]?.[0]?.slug,
+        title: wpPost._embedded?.['wp:term']?.[0]?.[0]?.name,
+      },
+      author: wpPost._embedded?.['wp:term']?.[0]?.[0]?.name || 'Johny Åhman',
+      content: wpPost.content.rendered.replace(/<[^>]*>/g, '').trim(),
+      draft: wpPost.status !== 'publish',
+    };
+
     const permalink = await generatePermalink({
       slug: post.slug,
       publishDate: post.publishDate,
       category: post.category?.slug,
     });
+
     return {
       ...post,
       permalink,

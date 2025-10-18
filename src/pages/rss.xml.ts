@@ -1,16 +1,43 @@
 // WordPress RSS Feed Generator
 import type { Post } from '~/types';
 import { SITE, METADATA, APP_BLOG } from 'astrowind:config';
-import { fetchPosts } from '~/lib/blog-wordpress';
 import { getPermalink } from '~/utils/permalinks';
 
-// Try to fetch posts, but don't fail if WordPress API is unavailable
+// Try to fetch posts directly from REST API, but don't fail if WordPress API is unavailable
 let posts: Post[] = [];
 try {
-  posts = await fetchPosts();
+  const WORDPRESS_API_URL = 'https://blogg.rygg.nu/wp-json/wp/v2/posts';
+  const response = await fetch(`${WORDPRESS_API_URL}?per_page=50&_embed`);
+  const wpPosts = await response.json();
+
+  posts = await Promise.all(
+    wpPosts.map(async (wpPost: any) => {
+      const post: Post = {
+        slug: wpPost.slug,
+        publishDate: new Date(wpPost.date),
+        title: wpPost.title.rendered,
+        excerpt: wpPost.excerpt.rendered.replace(/<[^>]*>/g, '').trim(),
+        image: wpPost._embedded?.['wp:featuredmedia']?.[0]?.source_url,
+        category: {
+          slug: wpPost._embedded?.['wp:term']?.[0]?.[0]?.slug,
+          title: wpPost._embedded?.['wp:term']?.[0]?.[0]?.name,
+        },
+        author: wpPost._embedded?.['wp:term']?.[0]?.[0]?.name || 'Johny Åhman',
+        content: wpPost.content.rendered.replace(/<[^>]*>/g, '').trim(),
+        draft: wpPost.status !== 'publish',
+        id: wpPost.id.toString(),
+        permalink: wpPost.slug,
+        updateDate: new Date(wpPost.modified),
+        tags: wpPost._embedded?.['wp:term']?.[1]?.map((tag: any) => ({ slug: tag.slug, title: tag.name })) || [],
+        metadata: {},
+        readingTime: undefined,
+      };
+      return post;
+    })
+  );
 } catch (error) {
   // Log error but continue with empty posts array
-  console.warn(`RSS generation: WordPress API failed (${error?.message || 'unknown error'}), generating empty feed`);
+  console.warn(`RSS generation: WordPress REST API failed (${error?.message || 'unknown error'}), generating empty feed`);
   posts = [];
 }
 
