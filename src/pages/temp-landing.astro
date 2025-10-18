@@ -1,0 +1,95 @@
+---
+// Temporary landing page for Enköpings Rehabcenter
+// Auto-redirects to main site after 10 seconds
+
+export const prerender = true;
+---
+
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enköpings Rehabcenter - Kommer snart</title>
+    <meta http-equiv="refresh" content="10;url=https://enkopingsrehabcenter.se" />
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        text-align: center;
+        background: white;
+        padding: 3rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        max-width: 90vw;
+      }
+      .logo {
+        margin-bottom: 2rem;
+      }
+      .booking-btn {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        transition: background 0.3s ease;
+        margin-bottom: 2rem;
+      }
+      .booking-btn:hover {
+        background: #5a67d8;
+      }
+      .countdown {
+        color: #666;
+        font-size: 0.9rem;
+        padding: 1rem;
+      }
+      .countdown span {
+        display: inline-block;
+        width: 2ch;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="logo">
+            <img src="/logo.svg" alt="Enköpings Rehabcenter" width="200" height="auto">
+        </div>
+
+      <a href="https://boka.antwork.se/238" class="booking-btn"> Boka tid nu </a>
+
+      <div class="countdown">
+        Omdirigerar automatiskt om <span id="countdown">10</span> sekunder...
+      </div>
+    </div>
+
+    <script>
+      let countdown = 10;
+      const countdownElement = document.getElementById('countdown');
+
+      if (countdownElement) {
+        const timer = setInterval(() => {
+          countdown--;
+          countdownElement.textContent = countdown.toString();
+
+          if (countdown <= 0) {
+            clearInterval(timer);
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

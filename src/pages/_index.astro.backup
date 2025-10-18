@@ -12,22 +12,14 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import BookingIntegration from '~/components/widgets/BookingIntegration.astro';
 
 const metadata = {
-  title: 'Enköpings Rehabcenter - Omdirigerar...',
+  title: 'Enköpings Rehabcenter — Personlig vård inom naprapati och sjukgymnastik i Enköping',
   description:
-    'Omdirigerar till temporär sida...',
+    'Välkommen! Jag heter Johny Åhman, naprapat och legitimerad sjukgymnast med över 35 års erfarenhet. Jag erbjuder personlig och evidensbaserad behandling för smärta och besvär i rygg, nacke, axlar, knän, fötter m.m. Boka enkelt tid online.',
   ignoreTitleTemplate: true,
 };
 ---
 
-<html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enköpings Rehabcenter - Omdirigerar...</title>
-    <meta http-equiv="refresh" content="0;url=/temp-landing">
-</head>
-<body>
-    <Layout metadata={metadata}>
+<Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
   <Hero
@@ -399,5 +391,3 @@ const metadata = {
     </Fragment>
   </CallToAction>
 </Layout>
-    </body>
-</html>
