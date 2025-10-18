@@ -22,11 +22,12 @@ Complete checklist of tasks needed to make the Enköpings Rehabcenter website pr
 
 ## Priority 3: Performance Optimization ✅ COMPLETED (Oct 18, 2025)
 - [x] **Enable Partytown**: Move analytics to web worker - **COMPLETED**
-- [x] **Critical CSS Extraction**: Inline above-the-fold CSS - **COMPLETED**
+- [x] **Critical CSS Extraction**: Removed due to Cloudflare build environment incompatibility - **REMOVED**
 - [x] **Font Loading Optimization**: Add preload directives and improved font stack - **COMPLETED**
 - [x] **Resource Hints**: DNS prefetch and preconnect for external resources - **COMPLETED**
 - [x] **GDPR Banner Optimization**: Streamlined heavy component - **COMPLETED**
-- [x] **Service Worker**: Implemented via build compression (advanced SW deferred) - **COMPLETED**
+- [x] **Build Compression**: Implemented via astro-compress - **COMPLETED**
+- [x] **Remove Critical CSS Package**: Uninstalled astro-critical-css (incompatible with serverless builds) - **COMPLETED**
 
 *Build Results:*
 - 32 pages built successfully in 26 seconds

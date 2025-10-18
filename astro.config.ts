@@ -10,7 +10,6 @@ import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
 import react from '@astrojs/react';
-import criticalCss from 'astro-critical-css';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
@@ -86,11 +85,6 @@ export default defineConfig({
 
     astrowind({
       config: './src/config.yaml',
-    }),
-
-    criticalCss({
-      width: 1200,
-      height: 800,
     }),
   ],
 
