@@ -1,9 +1,7 @@
-import type { APIRoute } from 'astro';
-
-export const post: APIRoute = async ({ request }) => {
+export async function onRequestPost({ request, env }) {
   // Verify webhook secret for security
   const authHeader = request.headers.get('authorization');
-  const expectedSecret = process.env.REBUILD_SECRET;
+  const expectedSecret = env.REBUILD_SECRET;
 
   if (expectedSecret && authHeader !== `Bearer ${expectedSecret}`) {
     return new Response('Unauthorized', { status: 401 });
@@ -16,9 +14,9 @@ export const post: APIRoute = async ({ request }) => {
     // 1. Trigger a rebuild via Cloudflare API (requires API token)
     // 2. Simply acknowledge and let git push handle deployment
 
-    const CLOUDFLARE_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
-    const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
-    const CLOUDFLARE_PROJECT_NAME = process.env.CLOUDFLARE_PROJECT_NAME;
+    const CLOUDFLARE_API_TOKEN = env.CLOUDFLARE_API_TOKEN;
+    const CLOUDFLARE_ACCOUNT_ID = env.CLOUDFLARE_ACCOUNT_ID;
+    const CLOUDFLARE_PROJECT_NAME = env.CLOUDFLARE_PROJECT_NAME;
 
     // Option 1: Direct Cloudflare Pages API trigger (if tokens available)
     if (CLOUDFLARE_API_TOKEN && CLOUDFLARE_ACCOUNT_ID && CLOUDFLARE_PROJECT_NAME) {
@@ -88,11 +86,22 @@ export const post: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({
       success: false,
       error: 'Rebuild request failed',
-      message: error.message,
+      message: error.message || 'Unknown error',
       timestamp: new Date().toISOString()
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
   }
-};
+}
+
+export async function onRequestGet() {
+  return new Response(JSON.stringify({
+    success: true,
+    message: 'Rebuild API endpoint is working. Use POST method to trigger rebuild.',
+    timestamp: new Date().toISOString()
+  }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' }
+  });
+}
